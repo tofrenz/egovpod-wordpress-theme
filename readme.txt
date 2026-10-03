@@ -99,6 +99,16 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.1 =
+* Listendarstellung neu gebaut. Sie sah unbrauchbar aus: Das Eltern-Theme
+  stellt die Karte als Spalte auf und streckt das Cover über die ganze Höhe,
+  die Umbauten für die Zeile griffen nicht weit genug. Jetzt eine Zeile je
+  Folge in gleicher Flucht – Cover, Nummer, Titel, Datum, Dauer, Mitwirkende –
+  mit Trennlinien statt Kästen und nur mit Flexbox gebaut.
+* Besuchte Folgentitel stehen auch im hellen Modus in gedämpftem Markenton
+  statt in KERNs Violett; violette und orange Titel nebeneinander waren
+  unruhig.
+
 = 2.6.0 =
 * Episodenarchiv sortiert nach Folgennummer absteigend statt nach
   Veröffentlichungsdatum. Beim eGovernment Podcast laufen beide auseinander;
