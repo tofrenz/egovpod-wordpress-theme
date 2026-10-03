@@ -96,6 +96,16 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.5.0 =
+* Neues Seiten-Template „Teilnehmer:innen (Karten)": Die Podlove-Tabelle auf
+  der Teilnehmer-Seite wird in Karten mit Avatar, Name, Anzahl der Folgen und
+  Dienste-Symbolen umgewandelt. Die Folgenliste klappt auf Wunsch auf.
+* Dazu ein alphabetisches Register, das beim Scrollen mitläuft; nicht belegte
+  Buchstaben bleiben stehen, damit die Leiste nicht springt. Umlaute werden
+  eingedeutscht einsortiert, Namen ohne Buchstaben am Anfang unter „Übrige".
+* Am Podlove-Template ändert sich nichts: Ohne dieses Seiten-Template steht
+  die Tabelle unverändert wieder da.
+
 = 2.4.1 =
 * Tabellen im Inhalt waren unlesbar: Das Eltern-Theme setzt `.kux-prose table`
   auf `display: block`, wodurch die Tabelle ihr Spaltenlayout verliert. Bei

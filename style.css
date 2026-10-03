@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.4.1
+Version:           2.5.0
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -988,5 +988,167 @@ html[data-kern-theme="dark"] .kux-prose :is(
 		[style*="color:rgb(0,0,0)"]
 	) {
 		color: inherit !important;
+	}
+}
+
+/* ==========================================================================
+   Teilnehmer:innen-Seite
+   Aus der Podlove-Tabelle werden Karten (siehe inc/contributors.php).
+   Register oben, läuft beim Scrollen mit; nicht belegte Buchstaben bleiben
+   stehen, damit die Leiste nicht springt.
+   ========================================================================== */
+
+.egp-people__intro {
+	margin-bottom: var(--egp-space-l);
+}
+
+.egp-az {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	margin-bottom: var(--egp-space-xl);
+	padding-block: var(--egp-space-s);
+	background: var(--kern-color-layout-background-default, Canvas);
+	border-bottom: 1px solid var(--egp-border);
+}
+
+.egp-az__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--egp-space-xs);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.egp-az__link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.25rem;
+	min-height: 2.25rem;
+	border-radius: var(--egp-radius);
+	font-weight: var(--kern-typography-font-weight-semi-bold, 600);
+	text-decoration: none;
+}
+
+a.egp-az__link {
+	color: var(--kern-color-action-default);
+	border: 1px solid var(--egp-border);
+}
+
+a.egp-az__link:hover,
+a.egp-az__link:focus-visible {
+	background: var(--kern-color-action-default);
+	color: var(--kern-color-action-on-default);
+}
+
+.egp-az__link--leer {
+	color: var(--kern-color-layout-text-muted-contextual, currentColor);
+	opacity: 0.4;
+}
+
+.egp-people__group {
+	margin-bottom: var(--egp-space-2xl);
+}
+
+/* Das Register verdeckt beim Springen sonst die Überschrift. */
+.egp-people__group {
+	scroll-margin-top: 4.5rem;
+}
+
+.egp-people__letter {
+	padding-bottom: var(--egp-space-xs);
+	margin-bottom: var(--egp-space-l);
+	border-bottom: 3px solid var(--egp-brand);
+}
+
+.egp-people__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: var(--egp-space);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.egp-person__head {
+	display: flex;
+	align-items: center;
+	gap: var(--egp-space-s);
+}
+
+.egp-person__avatar img {
+	display: block;
+	width: 56px;
+	height: 56px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.egp-person__name {
+	margin: 0;
+}
+
+.egp-person__count {
+	margin: 0;
+	opacity: 0.75;
+}
+
+.egp-person__services {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--egp-space-xs);
+	margin-top: var(--egp-space-s);
+}
+
+.egp-person__services img {
+	display: block;
+	width: 20px;
+	height: 20px;
+	border-radius: 3px;
+}
+
+html[data-kern-theme="dark"] .egp-person__services img {
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+
+.egp-person__episodes {
+	margin-top: var(--egp-space-s);
+	border-top: 1px solid var(--egp-border);
+	padding-top: var(--egp-space-s);
+}
+
+.egp-person__summary {
+	cursor: pointer;
+	font-size: var(--kern-typography-font-size-small-static, 0.9375rem);
+	font-weight: var(--kern-typography-font-weight-medium, 500);
+	color: var(--kern-color-action-default);
+}
+
+.egp-person__summary:focus-visible {
+	outline: 3px solid var(--kern-color-action-focus-default, currentColor);
+	outline-offset: 2px;
+}
+
+.egp-person__list {
+	margin: var(--egp-space-s) 0 0;
+	padding-left: 1.1rem;
+	font-size: var(--kern-typography-font-size-small-static, 0.9375rem);
+}
+
+.egp-person__list li + li {
+	margin-top: var(--egp-space-xs);
+}
+
+@media (max-width: 767.98px) {
+	.egp-people__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.egp-az__link {
+		min-width: 2rem;
+		min-height: 2rem;
 	}
 }
