@@ -1,0 +1,897 @@
+/*
+Theme Name:        eGovPod
+Theme URI:         https://www.egovernment-podcast.com/
+Template:          kern-ux
+Author:            Torsten Frenzel
+Author URI:        https://www.linkedin.com/in/tfrenzel
+Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
+Version:           2.3.3
+Requires at least: 6.4
+Tested up to:      6.8
+Requires PHP:      7.4
+License:           GNU General Public License v2 or later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       egovpod
+Tags:              podcast, accessibility-ready, custom-logo, featured-images, translation-ready, two-columns
+*/
+
+/* ==========================================================================
+   Grundlagen – nur KERN-Token, Präfix egp-*
+   (Eltern-Theme nutzt kux-*, das Kit kern-*)
+   ========================================================================== */
+
+:root {
+	--egp-space-xs: var(--kern-metric-space-x-small, 4px);
+	--egp-space-s: var(--kern-metric-space-small, 8px);
+	--egp-space: var(--kern-metric-space-default, 16px);
+	--egp-space-l: var(--kern-metric-space-large, 24px);
+	--egp-space-xl: var(--kern-metric-space-x-large, 32px);
+	--egp-space-2xl: var(--kern-metric-space-2x-large, 40px);
+	--egp-radius: var(--kern-metric-border-radius-default, 4px);
+	--egp-radius-l: var(--kern-metric-border-radius-large, 8px);
+	--egp-text: var(--kern-color-layout-text-default-contextual, var(--kern-color-layout-text-default));
+	--egp-muted: var(--kern-color-layout-text-muted-contextual, var(--kern-color-layout-text-muted));
+	--egp-border: var(--kern-color-decorative-border-contextual, var(--kern-color-decorative-border-default));
+	--egp-action: var(--kern-color-action-default-contextual, var(--kern-color-action-default));
+	--egp-narrow: 46rem;
+
+	/* Logo-Orange als Schmuckfarbe. Die Aktionsfarbe (Links, Buttons) setzt
+	   das Eltern-Theme über seinen Akzent – siehe functions.php. */
+	--egp-brand: #ff9400;
+}
+
+/* ==========================================================================
+   Markenakzente
+   ========================================================================== */
+
+.kux-header {
+	border-top: 6px solid var(--egp-brand);
+}
+
+.egp-section > .kern-heading-medium,
+.egp-section__head > .kern-heading-medium {
+	display: inline-block;
+	padding-bottom: var(--egp-space-xs);
+	border-bottom: 3px solid var(--egp-brand);
+}
+
+.egp-card.kern-card--interactive:hover,
+.egp-card.kern-card--interactive:focus-within {
+	border-color: var(--egp-brand);
+}
+
+/* Logo: transparentes PNG mit schwarzer Schrift. Im Kopf größer als das
+   Standard-Logo des Eltern-Themes, weil der Schriftzug Teil des Bildes ist.
+   Im Dunkelmodus (Umschalter ODER Systemeinstellung) auf heller Fläche. */
+.kux-branding__logo img.egp-logo,
+.kux-branding__logo .custom-logo {
+	max-height: 88px;
+	width: auto;
+}
+
+[data-kern-theme="dark"] .kux-branding__logo img {
+	background: #f4f5f8;
+	padding: 4px 6px;
+	border-radius: var(--egp-radius);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-kern-theme="light"]) .kux-branding__logo img {
+		background: #f4f5f8;
+		padding: 4px 6px;
+		border-radius: var(--egp-radius);
+	}
+}
+
+/* Der Podcast-Name steckt im Logo – Titeltext nur für Screenreader. */
+.egp-has-logo .kux-branding__title {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* ==========================================================================
+   Flächen (Hero der Startseite, Kopf der Episode)
+   Das Eltern-Theme legt den Inhalt in .kern-container – deshalb Panels statt
+   randloser Bänder.
+   ========================================================================== */
+
+.egp-panel {
+	border-radius: var(--egp-radius-l);
+	border: 1px solid var(--egp-border);
+	margin-bottom: var(--egp-space-2xl);
+}
+
+.egp-panel__inner {
+	padding: var(--egp-space-2xl) clamp(var(--egp-space), 4vw, var(--egp-space-2xl));
+}
+
+.egp-hero .kern-hgroup,
+.egp-episode__titles {
+	margin-bottom: var(--egp-space);
+}
+
+.egp-section {
+	padding-bottom: var(--egp-space-2xl);
+}
+
+.egp-section__head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: var(--egp-space);
+	flex-wrap: wrap;
+	margin-bottom: var(--egp-space-l);
+}
+
+.egp-section__head > * {
+	margin: 0;
+}
+
+.egp-archive-head .kern-preline,
+.egp-archive-head h1 {
+	margin: 0;
+}
+
+/* Hero Startseite */
+.egp-hero__inner {
+	display: grid;
+	gap: var(--egp-space-2xl);
+	align-items: center;
+}
+
+@media (min-width: 768px) {
+	.egp-hero__inner {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
+	}
+}
+
+.egp-hero__cover {
+	width: 360px;
+	max-width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	object-fit: cover;
+	border-radius: var(--egp-radius-l);
+	box-shadow: 0 12px 32px oklch(var(--kern-shadow-color, 0 0 0) / 0.35);
+}
+
+.egp-hero__summary {
+	max-width: var(--egp-narrow);
+}
+
+.egp-hero__summary p {
+	margin: 0 0 var(--egp-space);
+}
+
+.egp-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--egp-space);
+	margin-top: var(--egp-space-l);
+}
+
+/* ==========================================================================
+   Karten und Raster
+   ========================================================================== */
+
+.egp-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+	gap: var(--egp-space-l);
+}
+
+.egp-card .kern-card__media img {
+	aspect-ratio: 1;
+	object-fit: cover;
+}
+
+.egp-card .kern-title,
+.egp-card .kern-preline,
+.egp-card .kern-subline,
+.egp-card .kern-body {
+	margin: 0;
+}
+
+.egp-card__footer {
+	margin-top: auto;
+}
+
+/* Metazeile */
+.egp-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--egp-space-s) var(--egp-space);
+	color: var(--egp-muted);
+	font-size: var(--kern-typography-font-size-small-static, 0.875rem);
+}
+
+.egp-meta__item {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--egp-space-xs);
+}
+
+.egp-meta__item .kern-icon {
+	background-color: currentColor;
+}
+
+/* Neueste Folge */
+.egp-latest__head {
+	display: flex;
+	gap: var(--egp-space-l);
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.egp-latest__head .kern-card__header > * {
+	margin: 0 0 var(--egp-space-xs);
+}
+
+.egp-latest__cover {
+	width: 160px;
+	height: 160px;
+	object-fit: cover;
+	border-radius: var(--egp-radius);
+}
+
+/* ==========================================================================
+   Episode
+   ========================================================================== */
+
+.egp-episode__intro {
+	display: grid;
+	gap: var(--egp-space-l);
+	align-items: end;
+}
+
+@media (min-width: 768px) {
+	.egp-episode__intro {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+
+	.egp-episode__intro .egp-meta {
+		grid-column: 2;
+	}
+}
+
+.egp-episode__cover {
+	width: 220px;
+	height: 220px;
+	object-fit: cover;
+	border-radius: var(--egp-radius-l);
+	box-shadow: 0 8px 24px oklch(var(--kern-shadow-color, 0 0 0) / 0.3);
+}
+
+.egp-episode__titles {
+	margin: 0;
+}
+
+.egp-player {
+	align-self: stretch;
+	width: 100%;
+	margin-top: var(--egp-space-xl);
+	min-height: 140px; /* reserviert Platz, bis der Web Player geladen ist */
+}
+
+.egp-player iframe,
+.egp-player podlove-player,
+.egp-player > div {
+	width: 100%;
+	max-width: 100%;
+}
+
+.egp-episode__body {
+	padding-top: var(--egp-space-2xl);
+}
+
+.egp-lead {
+	font-weight: var(--kern-typography-font-weight-medium, 500);
+	margin-top: 0;
+	margin-bottom: var(--egp-space-l);
+}
+
+.egp-latest .egp-player {
+	margin-top: 0;
+}
+
+.egp-latest .kern-card__footer .kern-btn {
+	width: auto;
+}
+
+.egp-aside {
+	display: flex;
+	flex-direction: column;
+	gap: var(--egp-space-l);
+}
+
+
+.egp-aside__card .kern-title {
+	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: var(--egp-space-s);
+}
+
+.egp-subscribe {
+	margin-top: var(--egp-space);
+}
+
+/* Vor/zurück */
+.egp-adjacent {
+	display: grid;
+	gap: var(--egp-space);
+	margin-top: var(--egp-space-2xl);
+}
+
+@media (min-width: 768px) {
+	.egp-adjacent {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.egp-adjacent__link--next {
+		grid-column: 2;
+		text-align: right;
+	}
+
+	.egp-adjacent__link--next .kern-card__container {
+		align-items: flex-end;
+	}
+}
+
+.egp-adjacent__link {
+	text-decoration: none;
+	color: var(--egp-text);
+	transition: border-color .15s ease;
+}
+
+.egp-adjacent__link:hover {
+	border-color: var(--egp-action);
+}
+
+.egp-adjacent__link:hover .kern-title {
+	text-decoration: underline;
+}
+
+.egp-adjacent__link:focus-visible {
+	outline: 3px solid var(--kern-color-action-focus-default, currentColor);
+	outline-offset: 2px;
+}
+
+.egp-adjacent__link .kern-card__container {
+	gap: var(--egp-space-xs);
+}
+
+.egp-adjacent__link .kern-preline {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--egp-space-xs);
+}
+
+/* ==========================================================================
+   Podlove-Ausgaben an KERN angleichen
+   ========================================================================== */
+
+/* Mitwirkende – Liste */
+.egp-contributors ul.podlove-contributors {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--egp-space);
+}
+
+.egp-contributors .podlove-contributors li {
+	display: flex;
+	align-items: center;
+	gap: var(--egp-space-s);
+	padding: var(--egp-space-s) var(--egp-space) var(--egp-space-s) var(--egp-space-s);
+	border: 1px solid var(--egp-border);
+	border-radius: 999px;
+	font-weight: var(--kern-typography-font-weight-semi-bold, 600);
+}
+
+.egp-contributors img,
+.egp-transcript .ts-speaker-avatar img,
+.egp-transcript img.ts-speaker-avatar {
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+	object-fit: cover;
+}
+
+/* Mitwirkende – Karten/Tabelle */
+.egp-contributors .podlove-contributors-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+	gap: var(--egp-space);
+}
+
+.egp-contributors .podlove-contributors-card {
+	border: 1px solid var(--egp-border);
+	border-radius: var(--egp-radius);
+	padding: var(--egp-space);
+	background: var(--kern-color-layout-background-default-contextual);
+}
+
+.egp-contributors .podlove-contributors-card-inner {
+	display: flex;
+	gap: var(--egp-space);
+	align-items: flex-start;
+}
+
+.egp-contributors .podlove-contributors-card-services {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--egp-space-s);
+	margin-top: var(--egp-space-s);
+}
+
+.egp-contributors .podlove-contributors-card-services img {
+	width: 24px;
+	height: 24px;
+	border-radius: 0;
+}
+
+.egp-contributors table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.egp-contributors td {
+	padding: var(--egp-space-s);
+	border-bottom: 1px solid var(--egp-border);
+	vertical-align: middle;
+}
+
+/* Downloads als KERN-Buttons */
+.egp-downloads .episode_download_list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--egp-space-s);
+}
+
+.egp-downloads .episode_download_list li:first-child {
+	/* "Download:" – steht schon in der Kartenüberschrift */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.egp-downloads .episode_download_list a {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--egp-space);
+	padding: var(--egp-space-s) var(--egp-space);
+	border: 2px solid var(--egp-action);
+	border-radius: var(--egp-radius);
+	color: var(--egp-action);
+	font-weight: var(--kern-typography-font-weight-semi-bold, 600);
+	text-decoration: none;
+}
+
+.egp-downloads .episode_download_list a:hover {
+	background: var(--kern-color-action-state-indicator-tint-hover-opacity, transparent);
+	text-decoration: underline;
+}
+
+.egp-downloads .episode_download_list a:focus-visible {
+	outline: 3px solid var(--kern-color-action-focus-default, currentColor);
+	outline-offset: 2px;
+}
+
+.egp-downloads .size {
+	font-weight: var(--kern-typography-font-weight-regular, 400);
+	color: var(--egp-muted);
+	font-size: var(--kern-typography-font-size-small-static, 0.875rem);
+}
+
+.egp-downloads select,
+.egp-downloads button {
+	font: inherit;
+	min-height: 48px;
+	border-radius: var(--egp-radius);
+}
+
+/* Links in Podlove-Ausgaben (haben eigene Klassen, daher explizit) */
+.egp-shownotes a,
+.egp-transcript a,
+.egp-related a,
+.egp-contributors a {
+	color: var(--egp-action);
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+}
+
+.egp-shownotes a:hover,
+.egp-related a:hover,
+.egp-contributors a:hover {
+	text-decoration-thickness: 3px;
+}
+
+/* Shownotes */
+.egp-shownotes ul,
+.egp-shownotes ol {
+	padding-left: 0;
+	list-style: none;
+}
+
+.egp-shownotes .psn-entry {
+	display: flex;
+	gap: var(--egp-space-s);
+	align-items: flex-start;
+	padding-block: var(--egp-space-s);
+	border-bottom: 1px solid var(--egp-border);
+}
+
+.egp-shownotes .psn-icon {
+	width: 20px;
+	height: 20px;
+	flex: 0 0 20px;
+	margin-top: 3px;
+}
+
+/* Transkript */
+.egp-transcript {
+	max-height: 70vh;
+	overflow-y: auto;
+}
+
+.egp-transcript .ts-group {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: var(--egp-space-s) var(--egp-space);
+	padding-block: var(--egp-space-s);
+}
+
+.egp-transcript .ts-speaker {
+	font-weight: var(--kern-typography-font-weight-semi-bold, 600);
+}
+
+/* Abo-Button: Podlove rendert einen eigenen Button, wir sorgen nur für Luft */
+/* Podlove-Loader (hide=true) ist unsichtbar und darf keinen Platz belegen. */
+.egp-hero__actions > script,
+.egp-subscribe > script {
+	display: none;
+}
+
+/* Podlove Episode-Liste / Related Episodes */
+.egp-related ul {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+	gap: var(--egp-space);
+	list-style: none;
+	padding: 0;
+}
+
+.egp-related li {
+	border: 1px solid var(--egp-border);
+	border-radius: var(--egp-radius);
+	padding: var(--egp-space);
+}
+
+.egp-related img {
+	border-radius: var(--egp-radius);
+	margin-bottom: var(--egp-space-s);
+}
+
+
+/* Schlagwörter */
+.egp-tags {
+	gap: var(--egp-space-s);
+	flex-wrap: wrap;
+	padding: 0;
+	margin: var(--egp-space-l) 0 0;
+}
+
+.egp-tags a {
+	display: inline-block;
+	padding: var(--egp-space-xs) var(--egp-space);
+	border: 1px solid var(--egp-border);
+	border-radius: 999px;
+	color: var(--egp-action);
+	text-decoration: none;
+	font-size: var(--kern-typography-font-size-small-static, 0.875rem);
+}
+
+.egp-tags a:hover {
+	border-color: var(--egp-action);
+	text-decoration: underline;
+}
+
+
+.egp-search {
+	max-width: 40rem;
+	margin-top: var(--egp-space-l);
+}
+
+.egp-search__row {
+	display: flex;
+	gap: var(--egp-space-s);
+	align-items: stretch;
+}
+
+.egp-search__row .kern-form-input__input {
+	flex: 1;
+	min-width: 0;
+}
+
+
+
+/* ==========================================================================
+   Schmale Bildschirme: Cover kleiner, damit die neueste Folge schneller kommt
+   ========================================================================== */
+
+@media (max-width: 767.98px) {
+	.egp-panel__inner {
+		padding: var(--egp-space-xl) var(--egp-space);
+	}
+
+	.egp-hero__inner {
+		gap: var(--egp-space-xl);
+	}
+
+	.egp-hero__cover {
+		width: 200px;
+		margin-inline: auto;
+	}
+
+	.egp-episode__cover {
+		width: 150px;
+		height: 150px;
+	}
+
+	.egp-latest__cover {
+		width: 110px;
+		height: 110px;
+	}
+}
+
+/* ==========================================================================
+   Feinschliff Episodenseite
+   ========================================================================== */
+
+/* Abschnittsüberschriften bekommen Luft nach oben, Trennung ohne Linie */
+.egp-episode__body .egp-section > .kern-heading-medium {
+	margin-top: var(--egp-space-2xl);
+	margin-bottom: var(--egp-space);
+}
+
+.egp-episode__body .egp-section:first-of-type > .kern-heading-medium {
+	margin-top: var(--egp-space-xl);
+}
+
+/* Lead: etwas ruhiger als Fließtext, klar abgesetzt */
+.egp-lead {
+	padding-left: var(--egp-space);
+	border-left: 3px solid var(--egp-brand);
+}
+
+/* Shownotes: dichter gesetzt, letzte Zeile ohne Trennlinie */
+.egp-shownotes ul {
+	margin: 0;
+}
+
+.egp-shownotes .psn-entry {
+	gap: var(--egp-space);
+	align-items: baseline;
+	padding-block: var(--egp-space-s);
+}
+
+.egp-shownotes .psn-entry:last-child {
+	border-bottom: 0;
+}
+
+.egp-shownotes .psn-entry a {
+	font-weight: var(--kern-typography-font-weight-medium, 500);
+}
+
+/* Mitwirkende: gleich hohe Chips, Name nicht umbrechen */
+.egp-contributors .podlove-contributors li {
+	min-height: 56px;
+	white-space: nowrap;
+}
+
+.egp-contributors .podlove-contributors li .name {
+	white-space: normal;
+}
+
+/* Downloads: Dateigröße rechtsbündig, Buttons gleich breit */
+.egp-downloads .episode_download_list a {
+	min-height: 48px;
+}
+
+/* Transkript: abgesetzte Fläche, angenehm zu lesen */
+.egp-transcript {
+	padding: var(--egp-space);
+	background: var(--kern-color-layout-background-hued);
+	border-radius: var(--egp-radius);
+	font-size: var(--kern-typography-font-size-small-static, 0.9375rem);
+	line-height: 1.6;
+}
+
+.egp-transcript .ts-group + .ts-group {
+	border-top: 1px solid var(--egp-border);
+}
+
+/* Akkordeon-Kopf: gleiche Höhe wie Buttons, klarer Abstand */
+.egp-episode__body .kern-accordion__header {
+	padding-block: var(--egp-space-s);
+}
+
+/* Seitenleiste: Karten gleichmäßig, Überschrift kompakt */
+.egp-aside__card .kern-card__container {
+	gap: var(--egp-space-s);
+}
+
+.egp-aside__card .kern-card__body > * + * {
+	margin-top: var(--egp-space-s);
+}
+
+/* Vor/Zurück: mehr Luft zum Inhalt darüber */
+.egp-adjacent {
+	margin-top: var(--egp-space-2xl);
+	padding-top: var(--egp-space-xl);
+	border-top: 1px solid var(--egp-border);
+}
+
+/* ==========================================================================
+   Fremde Bausteine im Dunkelmodus
+   Podlove und „The Events Calendar“ bringen fest verdrahtete helle Flächen
+   und dunkle Schrift mit. Im Dunkelmodus stand dadurch heller Text auf
+   weißem Grund – zum Beispiel in der Teilnehmerliste der Episodenseite.
+   Beides wird hier auf die KERN-Token umgestellt, damit Hell und Dunkel
+   gleichermaßen lesbar bleiben.
+   ========================================================================== */
+
+/* Mitwirkenden-Karten (podlove-contributor-list style="cards") */
+.podlove-contributors-cards {
+	background: var(--kern-color-layout-background-hued) !important;
+	color: inherit;
+	border: 1px solid var(--egp-border);
+	border-radius: var(--egp-radius);
+	box-shadow: none !important;
+}
+
+.podlove-contributors-card + .podlove-contributors-card {
+	border-top: 1px solid var(--egp-border);
+}
+
+.podlove-contributors-card-person-details {
+	color: inherit !important;
+	opacity: 0.75;
+}
+
+.podlove-contributors-card-services img {
+	border-radius: 3px;
+}
+
+/* Dienst-Symbole sind feste Bildkacheln – im Dunkeln eine feine Kante */
+html[data-kern-theme="dark"] .podlove-contributors-card-services img {
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+
+/* Mitwirkende als Tabelle */
+.podlove-contributors-table {
+	background: transparent !important;
+	color: inherit;
+}
+
+.podlove-contributors-table th,
+.podlove-contributors-table td {
+	border-color: var(--egp-border);
+	color: inherit;
+}
+
+/* Veranstaltungs-Widget (The Events Calendar) */
+html[data-kern-theme="dark"] .tribe-common,
+html[data-kern-theme="dark"] .tribe-events {
+	--tec-color-text-primary: #f2f2f2;
+	--tec-color-text-primary-light: rgba(242, 242, 242, 0.7);
+	--tec-color-text-secondary: #c9c9c9;
+	--tec-color-text-events-title: #f2f2f2;
+	--tec-color-text-event-title: #f2f2f2;
+	--tec-color-text-event-date: #f2f2f2;
+	--tec-color-text-secondary-event-date: #c9c9c9;
+	--tec-color-icon-primary: #c9c9c9;
+	--tec-color-icon-primary-alt: #c9c9c9;
+	--tec-color-icon-active: #f2f2f2;
+	--tec-color-background: transparent;
+	--tec-color-background-secondary: transparent;
+	--tec-color-border-default: var(--egp-border);
+	--tec-color-border-secondary: var(--egp-border);
+	--tec-color-border-active: var(--egp-border);
+	--tec-color-link-primary: var(--kern-color-action-default);
+	--tec-color-link-accent: var(--kern-color-action-default);
+	--tec-color-accent-primary: var(--kern-color-action-default);
+}
+
+/* ==========================================================================
+   Episodentext: Schriftgrößen und Auszeichnungen zähmen
+   ========================================================================== */
+
+/* Die Folgenbeschreibung steht als Zitat am Anfang des Episodentextes.
+   Das Eltern-Theme setzt Zitate auf 2rem – fast das Doppelte des Fließtextes
+   und gedacht für ein herausgehobenes Einzelzitat. Hier sind es mehrere
+   Absätze am Stück, die dann die halbe Seite füllen. Die Markenlinie links
+   bleibt, die Größe geht auf Fließtext zurück. */
+.egp-episode__body .kux-prose blockquote,
+.egp-episode__body .kux-prose blockquote p {
+	font-size: inherit;
+	line-height: 1.6;
+}
+
+/* Absätze, die komplett in <strong> stehen, lesen sich wie Geschrei.
+   Hervorhebungen innerhalb eines Satzes bleiben unangetastet fett. */
+.egp-episode__body .kux-prose p > strong:only-child,
+.egp-episode__body .kux-prose p > b:only-child {
+	font-weight: inherit;
+}
+
+/* ==========================================================================
+   Episodenbild im Kopfbereich
+   Das Beitragsbild der Folge ist ein Banner im Format 3:1 und steht über
+   Titel und Player. Es ersetzt dort das quadratische Podlove-Cover; hat eine
+   Folge kein Beitragsbild, bleibt es beim Cover neben dem Titel.
+   ========================================================================== */
+
+.egp-episode__banner {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin-bottom: var(--egp-space-l);
+	border-radius: var(--egp-radius-l);
+}
+
+/* Ohne Cover braucht der Kopf keine zweite Spalte mehr. */
+@media (min-width: 768px) {
+	.egp-episode__intro--breit {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.egp-episode__intro--breit .egp-meta {
+		grid-column: 1;
+	}
+}
+
+/* Neueste Folge auf der Startseite: gleiches Prinzip wie auf der
+   Episodenseite – das Beitragsbild steht als Banner über Titel und Player,
+   Folgen ohne Beitragsbild behalten das quadratische Cover daneben. */
+.egp-latest__banner {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin-bottom: var(--egp-space);
+	border-radius: var(--egp-radius);
+}
+
+.egp-latest__head--breit {
+	display: block;
+}
+
+/* Titel in Karten: Link darf die Überschrift nicht verkleinern.
+   KERN gibt .kern-link eine eigene Schriftgröße mit. Steckt der Link in
+   einer Überschrift, erbt er sie nicht, sondern überschreibt sie – auf den
+   Episodenkarten war der Folgentitel dadurch kleiner als die Folgennummer
+   darüber. */
+.egp-card .kern-title a,
+.egp-latest__card .kern-title a,
+.egp-adjacent .kern-title a,
+.egp-related .kern-title a {
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+}
