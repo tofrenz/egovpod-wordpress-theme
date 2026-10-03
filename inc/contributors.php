@@ -76,9 +76,10 @@ function egovpod_contributor_letter( $name ) {
 /**
  * Banderolen: Auszeichnungen quer über einzelne Karten.
  *
- * Der Schlüssel ist der Name, wie Podlove ihn ausgibt – nicht wie die Person
- * heißt. Matthias Fein steht dort bislang nur als „Matthias"; wird der Name in
- * Podlove ergänzt, muss der Schlüssel hier mitwachsen.
+ * Der Schlüssel ist der Name, wie Podlove ihn ausgibt. Wird eine Person dort
+ * umbenannt, muss der Schlüssel hier mitwachsen – sonst fällt die Banderole
+ * stillschweigend weg. Mehrere Schreibweisen derselben Person dürfen
+ * nebeneinander stehen; es greift die erste, die passt.
  *
  * Erweitern ohne Theme-Änderung:
  *
@@ -93,6 +94,7 @@ function egovpod_contributor_bands() {
 	$banderolen = array(
 		'Torsten Frenzel'   => __( 'Host', 'egovpod' ),
 		'Peter Onderscheka' => __( 'most frequent guest', 'egovpod' ),
+		'Matthias Fein'     => __( 'Mann der ersten Stunde', 'egovpod' ),
 		'Matthias'          => __( 'Mann der ersten Stunde', 'egovpod' ),
 	);
 

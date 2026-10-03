@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EGOVPOD_VERSION', '2.6.2' );
+define( 'EGOVPOD_VERSION', '2.6.3' );
 
 require_once get_stylesheet_directory() . '/inc/podlove.php';
 require_once get_stylesheet_directory() . '/inc/template-tags.php';

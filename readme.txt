@@ -99,6 +99,11 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.3 =
+* Banderole bei Matthias Fein: In Podlove hieß die Person erst „Matthias",
+  jetzt „Matthias Fein" – der Schlüssel passt wieder. Beide Schreibweisen
+  sind hinterlegt.
+
 = 2.6.2 =
 * Banderolen auf der Teilnehmer:innen-Seite: Einzelne Karten tragen jetzt eine
   Auszeichnung quer über dem Kopf – Torsten Frenzel „Host", Peter Onderscheka
