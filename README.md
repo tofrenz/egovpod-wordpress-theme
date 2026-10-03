@@ -32,8 +32,92 @@ steckt, ist Absicht.
 4. **Podlove Podcast Publisher** installieren, falls noch nicht geschehen. Ohne ihn
    läuft das Theme als normales Blog-Theme.
 
-Eingestellt wird im Customizer unter **eGovPod (Podcast)**; Farben, Breiten und
-Hell/Dunkel kommen aus dem Eltern-Theme unter **KERN-UX**.
+## Konfiguration
+
+Alles Folgende ist optional — das Theme läuft ohne eine einzige Einstellung.
+
+### Seiten-Templates
+
+Zwei Seiten-Templates ersetzen lange Podlove-Tabellen durch etwas Übersichtlicheres.
+Zuzuweisen unter *Seiten → bearbeiten → Seiten-Attribute → Template*. An Podlove
+ändert sich dabei nichts: Zurück auf *Standard-Template* gestellt, steht die
+ursprüngliche Tabelle unverändert wieder da.
+
+| Template | macht daraus |
+|---|---|
+| **Episodenarchiv** | Karten oder Liste mit Suche, Jahresleiste, Sortierung nach Folgennummer und Blätterung |
+| **Teilnehmer:innen (Karten)** | Karten mit Avatar, Anzahl der Folgen und Diensten, dazu ein mitlaufendes A–Z-Register |
+
+### Customizer → eGovPod (Podcast)
+
+**Podlove-Integration**
+
+| Einstellung | Standard | wofür |
+|---|---|---|
+| Episoden-Bausteine ausgeben durch … | Automatisch | Theme-Layout oder Podlove-Templates. „Automatisch“ erkennt eine automatische Template-Zuweisung in Podlove und verhindert so doppelte Player. |
+| Darstellung der Mitwirkenden | Liste | Liste, Tabelle oder kommagetrennt |
+| Download-Buttons auf Episodenseiten | an | |
+| Transkript anzeigen | an | falls in Podlove hinterlegt |
+| Verwandte Episoden anzeigen | an | |
+| Strukturierte Daten (schema.org) | an | `PodcastEpisode` für Suchmaschinen |
+
+**Doppelte Bausteine** — für Podcasts, deren Episodentexte Zusammenfassung, Player
+und Mitwirkende schon selbst enthalten. Genau das ist beim eGovernment Podcast der
+Fall, deshalb sind die ersten beiden ab Werk aus.
+
+| Einstellung | Standard | wofür |
+|---|---|---|
+| Zusammenfassung als Vorspann anzeigen | aus | nur einschalten, wenn der Episodentext sie nicht selbst enthält |
+| Mitwirkende als eigenen Abschnitt anzeigen | aus | dito |
+| Zusätzlichen Web Player aus dem Episodentext entfernen | an | lässt den Player oben den einzigen sein; der gespeicherte Text bleibt unverändert |
+
+**Startseite & Archiv**
+
+| Einstellung | Standard |
+|---|---|
+| Überschrift | leer = Podcast-Titel aus Podlove |
+| Einleitungstext | leer = Podcast-Beschreibung aus Podlove |
+| Anzahl weiterer Episoden auf der Startseite | 6 |
+| Neueste Blogbeiträge auf der Startseite | an |
+| Episoden pro Archivseite | 24 |
+
+Farben, Breiten und der Hell/Dunkel-Umschalter gehören dem Eltern-Theme und stehen
+im Customizer unter **KERN-UX**. Das Child-Theme setzt dort lediglich die Akzentfarbe
+vor (hell `#A64F00`, dunkel `#FF9400`) — überschreibbar wie jede andere Einstellung.
+
+### Filter
+
+Für alles, wofür ein Schalter im Customizer zu viel wäre.
+
+| Filter | Datei | Standard |
+|---|---|---|
+| `egovpod_contributor_bands` | `inc/contributors.php` | Banderolen auf den Teilnehmerkarten, `Name => Aufschrift` |
+| `egovpod_player_only_templates` | `inc/podlove.php` | `array( 'default' )` — Podlove-Templates, die auf Episodenseiten übersprungen werden |
+| `egovpod_subscribe_color` | `inc/podlove.php` | `#A64F00` — Farbe im Abo-Fenster |
+| `egovpod_subscribe_language` | `inc/podlove.php` | `de` — Sprache des Abo-Fensters |
+
+Eigene `add_filter()`-Aufrufe gehören **nicht** in die `functions.php` des Themes —
+die wird beim nächsten Update überschrieben. Besser in ein Code-Snippets-Plugin oder
+in eine eigene Datei unter `wp-content/mu-plugins/`, die WordPress automatisch lädt
+und die jedes Theme-Update überlebt:
+
+```php
+<?php
+// wp-content/mu-plugins/egovpod-eigenes.php
+
+add_filter( 'egovpod_contributor_bands', function ( $banderolen ) {
+	$banderolen['Sandy Jahn'] = 'Co-Host';
+	return $banderolen;
+} );
+```
+
+Schlüssel ist der Name, wie Podlove ihn ausgibt. Wird eine Person dort umbenannt,
+fällt ihre Banderole stillschweigend weg — dann den Schlüssel nachziehen.
+
+### Außerhalb des Themes
+
+Ob der Web Player zu- oder aufgeklappt startet, entscheidet Podlove, nicht das Theme:
+*Podlove → Web Player → Configuration → Active Tab*. `none` startet zugeklappt.
 
 ## Abhängigkeiten
 
