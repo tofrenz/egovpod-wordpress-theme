@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.5.0
+Version:           2.5.1
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -1012,10 +1012,28 @@ html[data-kern-theme="dark"] .kux-prose :is(
 	border-bottom: 1px solid var(--egp-border);
 }
 
+/* Die Admin-Leiste von WordPress liegt über dem Register – nur für
+   Angemeldete, und unter 600px scrollt sie ohnehin mit. */
+body.admin-bar .egp-az {
+	top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+	body.admin-bar .egp-az {
+		top: 46px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	body.admin-bar .egp-az {
+		top: 0;
+	}
+}
+
 .egp-az__list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--egp-space-xs);
+	gap: 2px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -1023,6 +1041,7 @@ html[data-kern-theme="dark"] .kux-prose :is(
 
 .egp-az__link {
 	display: flex;
+	flex: 1 1 auto;
 	align-items: center;
 	justify-content: center;
 	min-width: 2.25rem;
@@ -1030,6 +1049,19 @@ html[data-kern-theme="dark"] .kux-prose :is(
 	border-radius: var(--egp-radius);
 	font-weight: var(--kern-typography-font-weight-semi-bold, 600);
 	text-decoration: none;
+}
+
+/* Ab Tablet passen alle 26 Buchstaben nebeneinander: eine Zeile über die
+   volle Textbreite statt zwei, damit die mitlaufende Leiste flach bleibt. */
+@media (min-width: 48rem) {
+	.egp-az__list {
+		flex-wrap: nowrap;
+	}
+
+	.egp-az__link {
+		flex: 1 1 0;
+		min-width: 0;
+	}
 }
 
 a.egp-az__link {
@@ -1057,6 +1089,13 @@ a.egp-az__link:focus-visible {
 	scroll-margin-top: 4.5rem;
 }
 
+/* Das Eltern-Theme scrollt weich. Auf dieser Seite liegen zwischen A und Z
+   rund 20.000 Pixel – die Animation dauert dann fast zehn Sekunden und das
+   Register verfehlt seinen Zweck. Hier springt es sofort. */
+html:has(.egp-people) {
+	scroll-behavior: auto;
+}
+
 .egp-people__letter {
 	padding-bottom: var(--egp-space-xs);
 	margin-bottom: var(--egp-space-l);
@@ -1078,12 +1117,22 @@ a.egp-az__link:focus-visible {
 	gap: var(--egp-space-s);
 }
 
+.egp-person__avatar {
+	flex: 0 0 auto;
+}
+
+/* Fehlt die Bilddatei bei Podlove, soll kein angeschnittener Alt-Text in der
+   Karte stehen; der Platzhalterkreis bleibt. Vorlesesoftware liest den
+   Alt-Text weiterhin. */
 .egp-person__avatar img {
 	display: block;
 	width: 56px;
 	height: 56px;
 	object-fit: cover;
 	border-radius: 50%;
+	background: var(--kern-color-layout-background-hued);
+	font-size: 0;
+	color: transparent;
 }
 
 .egp-person__name {
@@ -1148,7 +1197,6 @@ html[data-kern-theme="dark"] .egp-person__services img {
 	}
 
 	.egp-az__link {
-		min-width: 2rem;
-		min-height: 2rem;
+		min-height: 2.5rem;
 	}
 }

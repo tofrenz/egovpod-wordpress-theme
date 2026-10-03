@@ -96,6 +96,18 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.5.1 =
+* Register in einer Zeile statt zwei: Die Buchstaben verteilen sich ab
+  Tabletbreite gleichmäßig über die Textbreite, die mitlaufende Leiste
+  bleibt dadurch flach. Auf dem Telefon sind die Flächen größer.
+* Sprünge im Register kommen sofort an. Das Eltern-Theme scrollt weich; bei
+  rund 20.000 Pixeln zwischen A und Z dauerte die Animation fast zehn
+  Sekunden.
+* Die Admin-Leiste von WordPress verdeckte Angemeldeten die erste Zeile des
+  Registers.
+* Fehlt bei Podlove die Bilddatei, steht jetzt ein ruhiger Platzhalterkreis in
+  der Karte statt eines angeschnittenen Alt-Textes.
+
 = 2.5.0 =
 * Neues Seiten-Template „Teilnehmer:innen (Karten)": Die Podlove-Tabelle auf
   der Teilnehmer-Seite wird in Karten mit Avatar, Name, Anzahl der Folgen und
