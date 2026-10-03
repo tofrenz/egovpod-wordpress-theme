@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EGOVPOD_VERSION', '2.4.0' );
+define( 'EGOVPOD_VERSION', '2.4.1' );
 
 require_once get_stylesheet_directory() . '/inc/podlove.php';
 require_once get_stylesheet_directory() . '/inc/template-tags.php';
@@ -192,3 +192,68 @@ function egovpod_parent_notice() {
 	echo '<div class="notice notice-error"><p>' . wp_kses_post( __( '<strong>eGovPod</strong> benötigt das Eltern-Theme <strong>KERN-UX</strong> im Ordner <code>wp-content/themes/kern-ux</code>.', 'egovpod' ) ) . '</p></div>';
 }
 add_action( 'admin_notices', 'egovpod_parent_notice' );
+
+/**
+ * Tabellen im Inhalt in einen scrollbaren Rahmen legen.
+ *
+ * Das Eltern-Theme macht breite Tabellen scrollbar, indem es die Tabelle
+ * selbst auf `display: block` setzt. Damit verliert sie ihr Tabellenlayout
+ * (siehe style.css). Das Theme nimmt das zurück und legt das Scrollen
+ * stattdessen in einen Rahmen um die Tabelle – so bleibt beides erhalten.
+ *
+ * Verschachtelte Tabellen kommen in diesen Inhalten nicht vor; gäbe es sie,
+ * bliebe die innere ohne Rahmen. Das ist harmlos.
+ *
+ * @param string $content Beitragsinhalt.
+ * @return string
+ */
+function egovpod_wrap_tables( $content ) {
+	if ( is_admin() || is_feed() || false === stripos( $content, '<table' ) ) {
+		return $content;
+	}
+
+	$umhuellt = preg_replace(
+		'#<table\b(?:[^>]*)>.*?</table>#is',
+		'<div class="egp-table-scroll">$0</div>',
+		$content
+	);
+
+	return null === $umhuellt ? $content : $umhuellt;
+}
+add_filter( 'the_content', 'egovpod_wrap_tables', 30 );
+
+/**
+ * Nur die Rahmen fokussierbar machen, die tatsächlich scrollen.
+ *
+ * Ein Rahmen, der nichts zu scrollen hat, wäre sonst eine Tabstation ohne
+ * Zweck. Scrollt er, muss die Tastatur hineinkommen – deshalb bekommt er
+ * dann tabindex, Rolle und einen Namen.
+ */
+function egovpod_table_scroll_script() {
+	if ( is_admin() ) {
+		return;
+	}
+	?>
+<script>
+(function () {
+	var pruefe = function () {
+		document.querySelectorAll('.egp-table-scroll').forEach(function (r) {
+			var scrollt = r.scrollWidth > r.clientWidth + 1;
+			if (scrollt) {
+				r.setAttribute('tabindex', '0');
+				r.setAttribute('role', 'region');
+				r.setAttribute('aria-label', <?php echo wp_json_encode( __( 'Tabelle, waagerecht scrollbar', 'egovpod' ) ); ?>);
+			} else {
+				r.removeAttribute('tabindex');
+				r.removeAttribute('role');
+				r.removeAttribute('aria-label');
+			}
+		});
+	};
+	document.addEventListener('DOMContentLoaded', pruefe);
+	window.addEventListener('resize', pruefe);
+})();
+</script>
+	<?php
+}
+add_action( 'wp_footer', 'egovpod_table_scroll_script' );

@@ -96,6 +96,17 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.4.1 =
+* Tabellen im Inhalt waren unlesbar: Das Eltern-Theme setzt `.kux-prose table`
+  auf `display: block`, wodurch die Tabelle ihr Spaltenlayout verliert. Bei
+  Tabellen aus dem klassischen Editor fiel jede Spalte auf ein Zeichen pro
+  Zeile zusammen. Das Theme stellt das Tabellenlayout wieder her und legt das
+  Scrollen in einen Rahmen um die Tabelle.
+* Feste Höhen und Spaltenbreiten aus dem alten Editor werden bei diesen
+  Tabellen ignoriert, Kopfzeile und Trennlinien kommen aus den KERN-Token.
+* Dunkelmodus: Text, dem im Editor hartes Schwarz zugewiesen wurde, war
+  schwarz auf schwarz. Dieser eine Fall wird jetzt zurückgenommen.
+
 = 2.4.0 =
 * Doppellizenz: Das Theme steht nun wahlweise unter der GNU GPL v2 (oder
   später) oder unter der European Union Public Licence 1.2. Der vollständige

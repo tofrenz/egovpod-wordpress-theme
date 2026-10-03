@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.4.0
+Version:           2.4.1
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -896,4 +896,97 @@ html[data-kern-theme="dark"] .tribe-events {
 	font-size: inherit;
 	font-weight: inherit;
 	line-height: inherit;
+}
+
+/* ==========================================================================
+   Tabellen im Beitragsinhalt
+   Das Eltern-Theme setzt `.kux-prose table` auf `display: block` mit
+   `overflow-x: auto`, damit breite Tabellen scrollen können. Das kostet die
+   Tabelle aber ihr Tabellenlayout: Die Spalten verhandeln ihre Breiten nicht
+   mehr. Bei Tabellen aus dem alten Editor – die Spaltenbreiten wie
+   `width: 2.6455%` mitbringen – fällt dann jede Spalte auf ein Zeichen pro
+   Zeile zusammen. Im Transparenzbericht war die Tabelle so nicht lesbar.
+   Das Theme gibt der Tabelle ihr Layout zurück; das Scrollen übernimmt der
+   Rahmen .egp-table-scroll, den functions.php um jede Tabelle legt.
+   ========================================================================== */
+
+.kux-prose table {
+	display: table;
+	width: 100%;
+	max-width: 100%;
+	overflow: visible;
+	border-collapse: collapse;
+}
+
+.egp-table-scroll {
+	max-width: 100%;
+	overflow-x: auto;
+	margin-bottom: var(--egp-space);
+}
+
+/* Nur bei wirklich scrollbaren Tabellen: Fokusrahmen, damit die Tastatur
+   hineinkommt. Die Kennzeichnung setzt das Theme per Skript, siehe
+   functions.php. */
+.egp-table-scroll[tabindex]:focus-visible {
+	outline: 3px solid var(--kern-color-action-focus-default, currentColor);
+	outline-offset: 2px;
+}
+
+/* Tabellen aus dem alten Editor (direkt im Inhalt, nicht in einem
+   Block-<figure>) bringen feste Höhen und Spaltenbreiten in Prozent mit.
+   Beides stammt vom Editor, nicht von einer Gestaltungsabsicht, und macht
+   die Tabelle unbrauchbar – deshalb hier außer Kraft gesetzt. */
+.kux-prose > .egp-table-scroll > table {
+	height: auto !important;
+	width: 100% !important;
+}
+
+.kux-prose > .egp-table-scroll > table th,
+.kux-prose > .egp-table-scroll > table td {
+	width: auto !important;
+	height: auto !important;
+	padding: var(--egp-space-s);
+	border-bottom: 1px solid var(--egp-border);
+	text-align: left;
+	vertical-align: top;
+}
+
+/* Erste Zeile als Kopfzeile lesen – der alte Editor hat dafür kein <th>. */
+.kux-prose > .egp-table-scroll > table tr:first-child td,
+.kux-prose > .egp-table-scroll > table th {
+	font-weight: var(--kern-typography-font-weight-semi-bold, 600);
+	border-bottom: 2px solid var(--egp-border);
+}
+
+/* ==========================================================================
+   Schwarze Schrift aus dem Editor im Dunkelmodus
+   Ältere Seiten tragen Farben aus dem klassischen Editor im style-Attribut.
+   `color: #000000` war für weißen Grund gedacht und ist im Dunkelmodus
+   schwarz auf schwarz – im Transparenzbericht waren die Finanzzahlen so
+   unsichtbar. Nur dieser eine Fall wird zurückgenommen; andere Farben
+   bleiben, wie sie gesetzt wurden.
+   ========================================================================== */
+
+html[data-kern-theme="dark"] .kux-prose :is(
+	[style*="color: #000000"],
+	[style*="color:#000000"],
+	[style*="color: black"],
+	[style*="color:black"],
+	[style*="color: rgb(0, 0, 0)"],
+	[style*="color:rgb(0,0,0)"]
+) {
+	color: inherit !important;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-kern-theme="light"]) .kux-prose :is(
+		[style*="color: #000000"],
+		[style*="color:#000000"],
+		[style*="color: black"],
+		[style*="color:black"],
+		[style*="color: rgb(0, 0, 0)"],
+		[style*="color:rgb(0,0,0)"]
+	) {
+		color: inherit !important;
+	}
 }
