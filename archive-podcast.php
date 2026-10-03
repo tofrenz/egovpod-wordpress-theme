@@ -3,6 +3,7 @@
  * Episodenarchiv (Podlove: Einstellungen → Website → Episodenarchiv aktivieren).
  *
  * Läuft im Seitengerüst des Eltern-Themes KERN-UX (main > .kern-container).
+ * Sortierung, Jahresfilter und Mitwirkende kommen aus inc/archive.php.
  *
  * @package eGovPod
  */
@@ -18,7 +19,15 @@ get_header();
 	<?php egovpod_episode_search_form(); ?>
 </header>
 
+<?php egovpod_year_nav(); ?>
+
 <?php if ( have_posts() ) : ?>
+
+	<?php
+	egovpod_archive_toolbar( $GLOBALS['wp_query'] );
+	egovpod_prime_episode_contributors( wp_list_pluck( $GLOBALS['wp_query']->posts, 'ID' ) );
+	?>
+
 	<div class="egp-grid">
 		<?php
 		while ( have_posts() ) :
@@ -27,7 +36,13 @@ get_header();
 		endwhile;
 		?>
 	</div>
-	<?php egovpod_pagination(); ?>
+
+	<?php
+	add_filter( 'paginate_links', 'egovpod_year_in_pagination' );
+	egovpod_pagination();
+	remove_filter( 'paginate_links', 'egovpod_year_in_pagination' );
+	?>
+
 <?php else : ?>
 	<?php get_template_part( 'template-parts/content', 'none' ); ?>
 <?php endif; ?>

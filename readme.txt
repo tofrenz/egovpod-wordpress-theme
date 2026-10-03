@@ -21,8 +21,11 @@ Dieses Child-Theme ergänzt:
 
 * Episodenseite (single-podcast.php) mit Podlove Web Player, Shownotes,
   Mitwirkenden, Transkript (Akkordeon), Downloads, Abo-Button, Vor/Zurück
-* Episodenarchiv mit Episodensuche (archive-podcast.php bzw. Seiten-Template
-  „Episodenarchiv“)
+* Episodenarchiv mit Episodensuche, Jahresleiste, Sortierung nach
+  Folgennummer, Mitwirkenden auf den Karten und Umschalter Karten/Liste
+  (archive-podcast.php bzw. Seiten-Template „Episodenarchiv“)
+* Teilnehmer:innen-Seite als Karten mit alphabetischem Register
+  (Seiten-Template „Teilnehmer:innen (Karten)“)
 * Podcast-Startseite (front-page.php): Vorstellung, neueste Folge mit Player,
   weitere Episoden, Blogbeiträge
 * Markenfarbe Orange: setzt den Akzent des Eltern-Themes voreingestellt auf
@@ -95,6 +98,23 @@ nicht verwendet. Sie sind Hoheitszeichen, stehen nicht unter der EUPL und
 sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
+
+= 2.6.0 =
+* Episodenarchiv sortiert nach Folgennummer absteigend statt nach
+  Veröffentlichungsdatum. Beim eGovernment Podcast laufen beide auseinander;
+  die Liste sprang dadurch zwischen den Nummern. Folgen ohne Nummer stehen am
+  Ende. Bei einer Suche bleibt die Relevanz vorn.
+* Jahresleiste über dem Raster: „Alle" plus ein Knopf je Jahr, mit Anzahl.
+  277 Folgen sind sonst zwei Dutzend Seiten Blättern. Das gewählte Jahr bleibt
+  beim Blättern erhalten.
+* Mitwirkende als Avatarreihe im Fuß jeder Episodenkarte, verlinkt auf die
+  passende Karte der Teilnehmer:innen-Seite. Ohne Bild stehen dort die
+  Initialen. Die Daten kommen in einer Abfrage für die ganze Seite.
+* Umschalter Karten/Liste über dem Raster. Die Wahl merkt sich der Browser;
+  ohne JavaScript bleibt es bei den Karten.
+* Voreinstellung 24 statt 12 Episoden pro Archivseite.
+* Besuchte Folgentitel im Dunkelmodus in gedämpftem Markenorange statt im
+  Violett des Eltern-Themes.
 
 = 2.5.1 =
 * Register in einer Zeile statt zwei: Die Buchstaben verteilen sich ab

@@ -38,6 +38,11 @@ $egp_heading  = isset( $args['heading'] ) ? $args['heading'] : 'h3';
 		</div>
 		<footer class="kern-card__footer egp-card__footer">
 			<?php egovpod_episode_meta(); ?>
+			<?php
+			if ( function_exists( 'egovpod_episode_contributor_row' ) ) {
+				egovpod_episode_contributor_row();
+			}
+			?>
 		</footer>
 	</div>
 </article>

@@ -142,7 +142,7 @@ function egovpod_customize_register( $wp_customize ) {
 	$wp_customize->add_setting( 'egovpod_front_posts', array( 'default' => true, 'sanitize_callback' => 'egovpod_sanitize_checkbox' ) );
 	$wp_customize->add_control( 'egovpod_front_posts', array( 'label' => __( 'Neueste Blogbeiträge auf der Startseite', 'egovpod' ), 'section' => 'egovpod_front', 'type' => 'checkbox' ) );
 
-	$wp_customize->add_setting( 'egovpod_archive_per_page', array( 'default' => 12, 'sanitize_callback' => 'absint' ) );
+	$wp_customize->add_setting( 'egovpod_archive_per_page', array( 'default' => 24, 'sanitize_callback' => 'absint' ) );
 	$wp_customize->add_control( 'egovpod_archive_per_page', array( 'label' => __( 'Episoden pro Archivseite', 'egovpod' ), 'section' => 'egovpod_front', 'type' => 'number', 'input_attrs' => array( 'min' => 3, 'max' => 60 ) ) );
 }
 add_action( 'customize_register', 'egovpod_customize_register' );

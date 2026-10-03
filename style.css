@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.5.1
+Version:           2.6.0
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -1198,5 +1198,275 @@ html[data-kern-theme="dark"] .egp-person__services img {
 
 	.egp-az__link {
 		min-height: 2.5rem;
+	}
+}
+
+/* ==========================================================================
+   Episodenarchiv: Jahresleiste, Darstellung, Mitwirkende
+   Gilt für beide Archive – archive-podcast.php und das Seiten-Template
+   „Episodenarchiv". Siehe inc/archive.php.
+   ========================================================================== */
+
+.egp-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Jahresleiste -------------------------------------------------------- */
+
+.egp-years {
+	margin-bottom: var(--egp-space-l);
+	padding-bottom: var(--egp-space-s);
+	border-bottom: 1px solid var(--egp-border);
+}
+
+.egp-years__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--egp-space-xs);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.egp-years__link {
+	display: inline-flex;
+	align-items: baseline;
+	gap: var(--egp-space-xs);
+	min-height: 2.25rem;
+	padding: var(--egp-space-xs) var(--egp-space-s);
+	border: 1px solid var(--egp-border);
+	border-radius: var(--egp-radius);
+	color: var(--kern-color-action-default);
+	font-weight: var(--kern-typography-font-weight-medium, 500);
+	text-decoration: none;
+	line-height: 1.6;
+}
+
+.egp-years__link:hover,
+.egp-years__link:focus-visible {
+	border-color: var(--kern-color-action-default);
+}
+
+.egp-years__link--aktiv {
+	background: var(--kern-color-action-default);
+	border-color: var(--kern-color-action-default);
+	color: var(--kern-color-action-on-default);
+}
+
+.egp-years__zahl {
+	font-size: var(--kern-typography-font-size-small-static, 0.9375rem);
+	font-weight: var(--kern-typography-font-weight-regular, 400);
+	opacity: 0.75;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Zeile über dem Raster ----------------------------------------------- */
+
+.egp-archive-bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--egp-space-s);
+	margin-bottom: var(--egp-space);
+}
+
+.egp-archive-bar__zahl {
+	margin: 0;
+	color: var(--egp-muted);
+}
+
+.egp-viewswitch {
+	display: flex;
+	gap: 0;
+}
+
+.egp-viewswitch[hidden] {
+	display: none;
+}
+
+.egp-viewswitch__btn {
+	min-height: 2.25rem;
+	padding: var(--egp-space-xs) var(--egp-space);
+	border: 1px solid var(--egp-border);
+	background: transparent;
+	color: var(--kern-color-action-default);
+	font: inherit;
+	font-weight: var(--kern-typography-font-weight-medium, 500);
+	cursor: pointer;
+}
+
+.egp-viewswitch__btn:first-child {
+	border-radius: var(--egp-radius) 0 0 var(--egp-radius);
+}
+
+.egp-viewswitch__btn:last-child {
+	border-left-width: 0;
+	border-radius: 0 var(--egp-radius) var(--egp-radius) 0;
+}
+
+.egp-viewswitch__btn[aria-pressed="true"] {
+	background: var(--kern-color-action-default);
+	border-color: var(--kern-color-action-default);
+	color: var(--kern-color-action-on-default);
+}
+
+.egp-viewswitch__btn:focus-visible {
+	outline: 3px solid var(--kern-color-action-focus-default, currentColor);
+	outline-offset: 2px;
+}
+
+/* Listendarstellung ---------------------------------------------------- */
+
+.egp-grid--liste {
+	display: flex;
+	flex-direction: column;
+	gap: var(--egp-space-s);
+}
+
+.egp-grid--liste .egp-card {
+	display: grid;
+	grid-template-columns: 72px minmax(0, 1fr);
+	gap: var(--egp-space);
+	align-items: center;
+}
+
+/* Das Eltern-Theme stellt die Karte als Spalte auf und streckt das Bild über
+   die ganze Höhe. In der Liste läuft beides in einer Zeile. */
+.egp-grid--liste .egp-card .kern-card__media {
+	align-self: center;
+}
+
+.egp-grid--liste .egp-card .kern-card__media img {
+	width: 72px;
+	height: 72px;
+	border-radius: var(--egp-radius);
+}
+
+.egp-grid--liste .egp-card .kern-card__body {
+	display: none;
+}
+
+.egp-grid--liste .egp-card .kern-card__container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--egp-space-xs) var(--egp-space);
+	padding: var(--egp-space-s) var(--egp-space);
+}
+
+.egp-grid--liste .egp-card .kern-card__header {
+	flex: 1 1 18rem;
+	min-width: 0;
+}
+
+.egp-grid--liste .egp-card .egp-card__footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--egp-space-s) var(--egp-space);
+	margin: 0;
+}
+
+.egp-grid--liste .egp-crew {
+	margin-top: 0;
+}
+
+/* Mitwirkende auf der Karte -------------------------------------------- */
+
+/* Die Karte hat einen gestreckten Link über der ganzen Fläche; die Avatare
+   müssen darüber liegen, sonst sind sie nicht anklickbar. */
+.egp-crew {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: var(--egp-space-s);
+	margin-top: var(--egp-space-s);
+}
+
+.egp-crew__list {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.egp-crew__item + .egp-crew__item {
+	margin-left: -8px;
+}
+
+.egp-crew__link {
+	display: block;
+	border-radius: 50%;
+}
+
+.egp-crew__link:focus-visible {
+	outline: 3px solid var(--kern-color-action-focus-default, currentColor);
+	outline-offset: 2px;
+}
+
+.egp-crew__avatar {
+	display: block;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	object-fit: cover;
+	background: var(--kern-color-layout-background-hued);
+	box-shadow: 0 0 0 2px var(--kern-color-layout-background-default);
+	font-size: 0;
+	color: transparent;
+}
+
+.egp-crew__avatar--text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: var(--kern-typography-font-size-small-static, 0.8125rem);
+	font-weight: var(--kern-typography-font-weight-semi-bold, 600);
+	color: var(--egp-muted);
+}
+
+.egp-crew__mehr {
+	font-size: var(--kern-typography-font-size-small-static, 0.9375rem);
+	color: var(--egp-muted);
+}
+
+/* Besuchte Folgentitel: KERN setzt Violett. Auf Schwarz ist das zu dunkel,
+   deshalb im Dunkelmodus ein gedämpftes Markenorange. */
+html[data-kern-theme="dark"] .egp-grid .kern-link:visited {
+	color: #d08a3a;
+	color: color-mix(in oklch, var(--kern-color-action-default) 75%, #8a8a8a);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-kern-theme="light"]) .egp-grid .kern-link:visited {
+		color: #d08a3a;
+		color: color-mix(in oklch, var(--kern-color-action-default) 75%, #8a8a8a);
+	}
+}
+
+@media (max-width: 767.98px) {
+	.egp-grid--liste .egp-card {
+		grid-template-columns: 56px minmax(0, 1fr);
+		gap: var(--egp-space-s);
+	}
+
+	.egp-grid--liste .egp-card .kern-card__media img {
+		width: 56px;
+		height: 56px;
+	}
+
+	.egp-archive-bar {
+		justify-content: flex-start;
 	}
 }

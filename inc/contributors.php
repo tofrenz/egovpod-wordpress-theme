@@ -74,6 +74,45 @@ function egovpod_contributor_letter( $name ) {
 }
 
 /**
+ * Anker einer Person auf der Teilnehmer:innen-Seite.
+ *
+ * Damit die Avatare auf den Episodenkarten auf die richtige Karte zeigen.
+ *
+ * @param string $name Anzeigename.
+ * @return string
+ */
+function egovpod_contributor_anchor( $name ) {
+	$slug = sanitize_title( wp_strip_all_tags( $name ) );
+	return 'egp-person-' . ( $slug ? $slug : 'unbekannt' );
+}
+
+/**
+ * Adresse der Seite mit dem Template „Teilnehmer:innen (Karten)".
+ *
+ * @return string Leer, wenn es keine solche Seite gibt.
+ */
+function egovpod_contributors_page_url() {
+	$gemerkt = wp_cache_get( 'egovpod_contributors_page_url' );
+	if ( false !== $gemerkt ) {
+		return $gemerkt;
+	}
+
+	$seiten = get_pages(
+		array(
+			'meta_key'    => '_wp_page_template', // phpcs:ignore WordPress.DB.SlowDBQuery
+			'meta_value'  => 'page-templates/template-contributors.php', // phpcs:ignore WordPress.DB.SlowDBQuery
+			'number'      => 1,
+			'post_status' => 'publish',
+		)
+	);
+
+	$url = $seiten ? get_permalink( $seiten[0] ) : '';
+	wp_cache_set( 'egovpod_contributors_page_url', $url );
+
+	return $url;
+}
+
+/**
  * Inneres HTML eines Knotens als Zeichenkette.
  *
  * @param DOMNode $knoten Knoten.
@@ -218,7 +257,7 @@ function egovpod_render_contributor_cards( $leute ) {
 
 				<ul class="egp-people__grid">
 					<?php foreach ( $gruppen[ $buchstabe ] as $person ) : ?>
-						<li class="kern-card kern-card--hug egp-person">
+						<li class="kern-card kern-card--hug egp-person" id="<?php echo esc_attr( egovpod_contributor_anchor( $person['name'] ) ); ?>">
 							<div class="kern-card__container">
 
 								<div class="egp-person__head">
