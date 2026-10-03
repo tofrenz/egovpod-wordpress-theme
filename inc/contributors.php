@@ -74,6 +74,50 @@ function egovpod_contributor_letter( $name ) {
 }
 
 /**
+ * Banderolen: Auszeichnungen quer über einzelne Karten.
+ *
+ * Der Schlüssel ist der Name, wie Podlove ihn ausgibt – nicht wie die Person
+ * heißt. Matthias Fein steht dort bislang nur als „Matthias"; wird der Name in
+ * Podlove ergänzt, muss der Schlüssel hier mitwachsen.
+ *
+ * Erweitern ohne Theme-Änderung:
+ *
+ *     add_filter( 'egovpod_contributor_bands', function ( $b ) {
+ *         $b['Sandy Jahn'] = 'Co-Host';
+ *         return $b;
+ *     } );
+ *
+ * @return array<string, string> Name => Aufschrift.
+ */
+function egovpod_contributor_bands() {
+	$banderolen = array(
+		'Torsten Frenzel'   => __( 'Host', 'egovpod' ),
+		'Peter Onderscheka' => __( 'most frequent guest', 'egovpod' ),
+		'Matthias'          => __( 'Mann der ersten Stunde', 'egovpod' ),
+	);
+
+	return (array) apply_filters( 'egovpod_contributor_bands', $banderolen );
+}
+
+/**
+ * Aufschrift der Banderole für eine Person, oder ''.
+ *
+ * @param string $name Anzeigename.
+ * @return string
+ */
+function egovpod_contributor_band( $name ) {
+	$name = trim( wp_strip_all_tags( $name ) );
+
+	foreach ( egovpod_contributor_bands() as $schluessel => $aufschrift ) {
+		if ( 0 === strcasecmp( trim( (string) $schluessel ), $name ) ) {
+			return (string) $aufschrift;
+		}
+	}
+
+	return '';
+}
+
+/**
  * Anker einer Person auf der Teilnehmer:innen-Seite.
  *
  * Damit die Avatare auf den Episodenkarten auf die richtige Karte zeigen.
@@ -256,8 +300,16 @@ function egovpod_render_contributor_cards( $leute ) {
 				</h2>
 
 				<ul class="egp-people__grid">
-					<?php foreach ( $gruppen[ $buchstabe ] as $person ) : ?>
-						<li class="kern-card kern-card--hug egp-person" id="<?php echo esc_attr( egovpod_contributor_anchor( $person['name'] ) ); ?>">
+					<?php
+					foreach ( $gruppen[ $buchstabe ] as $person ) :
+						$banderole = egovpod_contributor_band( $person['name'] );
+						?>
+						<li class="kern-card kern-card--hug egp-person<?php echo $banderole ? ' egp-person--band' : ''; ?>" id="<?php echo esc_attr( egovpod_contributor_anchor( $person['name'] ) ); ?>">
+
+							<?php if ( $banderole ) : ?>
+								<p class="egp-person__band"><?php echo esc_html( $banderole ); ?></p>
+							<?php endif; ?>
+
 							<div class="kern-card__container">
 
 								<div class="egp-person__head">

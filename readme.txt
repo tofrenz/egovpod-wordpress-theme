@@ -99,6 +99,13 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.2 =
+* Banderolen auf der Teilnehmer:innen-Seite: Einzelne Karten tragen jetzt eine
+  Auszeichnung quer über dem Kopf – Torsten Frenzel „Host", Peter Onderscheka
+  „most frequent guest", Matthias Fein „Mann der ersten Stunde". Weitere lassen
+  sich über den Filter egovpod_contributor_bands ergänzen, ohne das Theme zu
+  ändern.
+
 = 2.6.1 =
 * Listendarstellung neu gebaut. Sie sah unbrauchbar aus: Das Eltern-Theme
   stellt die Karte als Spalte auf und streckt das Cover über die ganze Höhe,

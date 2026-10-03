@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.6.1
+Version:           2.6.2
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -1109,6 +1109,36 @@ html:has(.egp-people) {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+/* Banderole: Auszeichnung quer über den Kopf einzelner Karten
+   (siehe egovpod_contributor_bands() in inc/contributors.php). */
+.egp-person--band {
+	position: relative;
+	overflow: hidden;
+}
+
+.egp-person__band {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 1.75rem;
+	margin: 0;
+	padding: 2px var(--egp-space-s);
+	background: var(--egp-brand);
+	color: #231400;
+	font-size: var(--kern-typography-font-size-small-static, 0.8125rem);
+	font-weight: var(--kern-typography-font-weight-semi-bold, 600);
+	line-height: 1.25;
+	text-align: center;
+}
+
+.egp-person--band > .kern-card__container {
+	padding-top: 3.25rem;
 }
 
 .egp-person__head {
