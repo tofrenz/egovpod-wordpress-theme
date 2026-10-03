@@ -1,4 +1,4 @@
-# eGovPod
+# WordPress-Theme des eGovernment Podcast
 
 WordPress-Theme für den [eGovernment Podcast](https://egovernment-podcast.com) — ein
 Child-Theme von [KERN-UX](https://gitlab.opencode.de/sgemlichheim/kern-ux-theme-for-wordpress)
