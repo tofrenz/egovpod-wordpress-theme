@@ -3,7 +3,7 @@ Contributors: tfrenzel
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-License: GPLv2 or later
+License: GPLv2 or later OR EUPL-1.2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Child-Theme von KERN-UX für den eGovernment Podcast mit dem Podlove Podcast Publisher.
@@ -53,7 +53,16 @@ Dieses Child-Theme ergänzt:
 == Copyright ==
 
 eGovPod, Copyright 2026 Torsten Frenzel
-eGovPod wird unter den Bedingungen der GNU GPL v2 (oder später) verbreitet.
+
+eGovPod steht wahlweise unter der GNU GPL v2 (oder später) oder unter der
+European Union Public Licence 1.2. Wer das Theme nutzt, weitergibt oder
+verändert, wählt eine der beiden Lizenzen und hält sich an deren Bedingungen.
+SPDX-License-Identifier: GPL-2.0-or-later OR EUPL-1.2
+
+Zum Hintergrund: Die EUPL ist die Lizenz der öffentlichen Verwaltung in Europa
+und auch die Lizenz des KERN-Design-Systems. Die GPL ist die Lizenz von
+WordPress. Wer das Theme in einer WordPress-Installation betreibt, kombiniert
+es mit GPL-Code; für diese Kombination gelten die Bedingungen der GPL.
 
 Dieses Child-Theme enthält ausschließlich eigenen Code. Es bündelt keine
 fremden Bibliotheken, keine Schriften und keine Teile des KERN-Design-Systems;
@@ -86,6 +95,11 @@ nicht verwendet. Sie sind Hoheitszeichen, stehen nicht unter der EUPL und
 sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
+
+= 2.4.0 =
+* Doppellizenz: Das Theme steht nun wahlweise unter der GNU GPL v2 (oder
+  später) oder unter der European Union Public Licence 1.2. Der vollständige
+  EUPL-Text liegt als LICENSE.EUPL-1.2.txt bei.
 
 = 2.3.3 =
 * LICENSE mit dem vollständigen Text der GNU GPL v2 ergänzt.

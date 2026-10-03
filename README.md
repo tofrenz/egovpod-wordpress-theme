@@ -48,8 +48,19 @@ Hell/Dunkel kommen aus dem Eltern-Theme unter **KERN-UX**.
 
 ## Lizenz
 
-GNU General Public License v2 oder später, siehe [LICENSE](LICENSE).
-Marke und Logo des eGovernment Podcast sind davon ausgenommen — tausche
+Doppellizenz — wähle eine der beiden:
+
+* **GNU General Public License v2 oder später**, siehe [LICENSE](LICENSE)
+* **European Union Public Licence 1.2**, siehe [LICENSE.EUPL-1.2.txt](LICENSE.EUPL-1.2.txt)
+
+`SPDX-License-Identifier: GPL-2.0-or-later OR EUPL-1.2`
+
+Die EUPL ist die Lizenz der öffentlichen Verwaltung in Europa und auch die Lizenz des
+KERN-Design-Systems; die GPL ist die Lizenz von WordPress. Wer das Theme in einer
+WordPress-Installation betreibt, kombiniert es mit GPL-Code — für diese Kombination
+gelten die Bedingungen der GPL.
+
+Marke und Logo des eGovernment Podcast sind von beiden Lizenzen ausgenommen — tausche
 `assets/images/logo.png` gegen dein eigenes Logo.
 
 Einzelheiten zu allen Bestandteilen stehen im Abschnitt *Copyright* der

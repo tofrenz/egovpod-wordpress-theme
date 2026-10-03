@@ -5,14 +5,16 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.3.3
+Version:           2.4.0
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
-License:           GNU General Public License v2 or later
+License:           GNU General Public License v2 or later OR European Union Public Licence 1.2
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       egovpod
 Tags:              podcast, accessibility-ready, custom-logo, featured-images, translation-ready, two-columns
+
+SPDX-License-Identifier: GPL-2.0-or-later OR EUPL-1.2
 */
 
 /* ==========================================================================

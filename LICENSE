@@ -1,26 +1,38 @@
 eGovPod - WordPress-Child-Theme für den eGovernment Podcast
 Copyright (C) 2026 Torsten Frenzel
 
-Dieses Programm ist freie Software: Sie können es unter den Bedingungen der
-GNU General Public License, Version 2 oder (nach Ihrer Wahl) jeder späteren
-Version, weitergeben und/oder verändern.
+Dieses Theme steht unter einer Doppellizenz. Wer es nutzt, weitergibt oder
+verändert, wählt eine der beiden folgenden Lizenzen und hält sich an deren
+Bedingungen:
 
-Die Veröffentlichung erfolgt in der Hoffnung, dass es nützlich ist, aber
-OHNE JEDE GEWÄHRLEISTUNG - sogar ohne die implizite Gewährleistung der
-MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Einzelheiten
-stehen im nachfolgenden Lizenztext.
+  * GNU General Public License, Version 2 oder (nach Ihrer Wahl) jeder
+    späteren Version - der vollständige Text steht unten in dieser Datei.
 
-Eine Kopie der GNU General Public License sollte diesem Programm beigelegen
-haben. Falls nicht, siehe https://www.gnu.org/licenses/gpl-2.0.html
+  * European Union Public Licence, Version 1.2 - der vollständige Text liegt
+    als LICENSE.EUPL-1.2.txt bei. Die EUPL ist in allen 23 Amtssprachen der
+    Europäischen Union gleichermaßen verbindlich; die deutsche Fassung steht
+    unter https://eupl.eu/1.2/de/
+
+SPDX-License-Identifier: GPL-2.0-or-later OR EUPL-1.2
+
+Die Veröffentlichung erfolgt in der Hoffnung, dass es nützlich ist, aber OHNE
+JEDE GEWÄHRLEISTUNG - sogar ohne die implizite Gewährleistung der
+MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK.
+
+Hinweis zur Kombination mit WordPress: WordPress selbst steht unter der GPL.
+Wer dieses Theme in einer WordPress-Installation betreibt, kombiniert es mit
+GPL-Code; für diese Kombination gelten die Bedingungen der GPL.
 
 Nicht von dieser Lizenz erfasst sind die Marke und das Logo des eGovernment
-Podcast (assets/images/logo.png sowie der Schriftzug in screenshot.png). Alle
+Podcast (assets/images/logo.png und der Schriftzug in screenshot.png). Alle
 Rechte daran bleiben bei Torsten Frenzel.
 
 Zu den Bestandteilen, die aus dem Eltern-Theme KERN-UX stammen - darunter das
 KERN-Design-System unter der EUPL-1.2 und die Schriften unter der SIL OFL 1.1 -
 siehe den Abschnitt "Copyright" in readme.txt.
 
+----------------------------------------------------------------------------
+                   GNU GENERAL PUBLIC LICENSE, VERSION 2
 ----------------------------------------------------------------------------
 
                     GNU GENERAL PUBLIC LICENSE
