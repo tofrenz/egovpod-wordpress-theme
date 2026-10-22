@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.6.3
+Version:           2.6.4
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -798,29 +798,6 @@ html[data-kern-theme="dark"] .podlove-contributors-card-services img {
 	color: inherit;
 }
 
-/* Veranstaltungs-Widget (The Events Calendar) */
-html[data-kern-theme="dark"] .tribe-common,
-html[data-kern-theme="dark"] .tribe-events {
-	--tec-color-text-primary: #f2f2f2;
-	--tec-color-text-primary-light: rgba(242, 242, 242, 0.7);
-	--tec-color-text-secondary: #c9c9c9;
-	--tec-color-text-events-title: #f2f2f2;
-	--tec-color-text-event-title: #f2f2f2;
-	--tec-color-text-event-date: #f2f2f2;
-	--tec-color-text-secondary-event-date: #c9c9c9;
-	--tec-color-icon-primary: #c9c9c9;
-	--tec-color-icon-primary-alt: #c9c9c9;
-	--tec-color-icon-active: #f2f2f2;
-	--tec-color-background: transparent;
-	--tec-color-background-secondary: transparent;
-	--tec-color-border-default: var(--egp-border);
-	--tec-color-border-secondary: var(--egp-border);
-	--tec-color-border-active: var(--egp-border);
-	--tec-color-link-primary: var(--kern-color-action-default);
-	--tec-color-link-accent: var(--kern-color-action-default);
-	--tec-color-accent-primary: var(--kern-color-action-default);
-}
-
 /* ==========================================================================
    Episodentext: Schriftgrößen und Auszeichnungen zähmen
    ========================================================================== */
@@ -959,12 +936,14 @@ html[data-kern-theme="dark"] .tribe-events {
 }
 
 /* ==========================================================================
-   Schwarze Schrift aus dem Editor im Dunkelmodus
+   Dunkle Schrift aus dem Editor im Dunkelmodus
    Ältere Seiten tragen Farben aus dem klassischen Editor im style-Attribut.
-   `color: #000000` war für weißen Grund gedacht und ist im Dunkelmodus
-   schwarz auf schwarz – im Transparenzbericht waren die Finanzzahlen so
-   unsichtbar. Nur dieser eine Fall wird zurückgenommen; andere Farben
-   bleiben, wie sie gesetzt wurden.
+   Sie waren für weißen Grund gedacht: `color: #000000` ist im Dunkelmodus
+   schwarz auf schwarz (die Finanzzahlen im Transparenzbericht waren so
+   unsichtbar), `color: #3366ff` kommt dort nur auf rund 4,5:1 und liegt
+   damit an der Grenze der Lesbarkeit. Beide Fälle werden zurückgenommen,
+   andere Farben bleiben, wie sie gesetzt wurden. Kommt eine weitere dazu,
+   ist es eine Zeile mehr in dieser Liste.
    ========================================================================== */
 
 html[data-kern-theme="dark"] .kux-prose :is(
@@ -973,7 +952,11 @@ html[data-kern-theme="dark"] .kux-prose :is(
 	[style*="color: black"],
 	[style*="color:black"],
 	[style*="color: rgb(0, 0, 0)"],
-	[style*="color:rgb(0,0,0)"]
+	[style*="color:rgb(0,0,0)"],
+	[style*="color: #3366ff"],
+	[style*="color:#3366ff"],
+	[style*="color: rgb(51, 102, 255)"],
+	[style*="color:rgb(51,102,255)"]
 ) {
 	color: inherit !important;
 }
@@ -985,7 +968,11 @@ html[data-kern-theme="dark"] .kux-prose :is(
 		[style*="color: black"],
 		[style*="color:black"],
 		[style*="color: rgb(0, 0, 0)"],
-		[style*="color:rgb(0,0,0)"]
+		[style*="color:rgb(0,0,0)"],
+		[style*="color: #3366ff"],
+		[style*="color:#3366ff"],
+		[style*="color: rgb(51, 102, 255)"],
+		[style*="color:rgb(51,102,255)"]
 	) {
 		color: inherit !important;
 	}
@@ -1039,6 +1026,13 @@ body.admin-bar .egp-az {
 	list-style: none;
 }
 
+/* Das Flex-Element ist das <li>, nicht der Link darin — Breitenangaben
+   müssen deshalb hier stehen. Der Link füllt sein <li> aus. */
+.egp-az__list > li {
+	display: flex;
+	flex: 0 1 auto;
+}
+
 .egp-az__link {
 	display: flex;
 	flex: 1 1 auto;
@@ -1058,7 +1052,7 @@ body.admin-bar .egp-az {
 		flex-wrap: nowrap;
 	}
 
-	.egp-az__link {
+	.egp-az__list > li {
 		flex: 1 1 0;
 		min-width: 0;
 	}

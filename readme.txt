@@ -99,6 +99,21 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.4 =
+* Buchstabenleiste auf der Teilnehmer:innen-Seite: Sie klebte als schmaler
+  Streifen links statt sich über die Textbreite zu verteilen, jeder Buchstabe
+  nur 13 Pixel breit. Die Breitenangaben standen am Link statt am
+  Listenelement, das das Flex-Element ist; das min-width: 0 dabei hat zudem
+  die Mindestgröße der Tippfläche überschrieben.
+* Dunkelmodus: Auch `color: #3366ff` aus dem klassischen Editor wird jetzt
+  zurückgenommen. Auf Schwarz kommt es nur auf rund 4,5:1 und liegt damit an
+  der Grenze; betroffen sind die hervorgehobenen Zeilen im Transparenzbericht.
+* Eigene Farbzuweisungen für The Events Calendar entfernt. KERN-UX 1.2.1
+  bringt eine eigene Kalender-CSS mit, die dieselben Variablen aus den
+  KERN-Token ableitet — und anders als unsere auch dem Hellmodus und der
+  Akzentfarbe folgt. Setzt voraus, dass das Eltern-Theme mindestens auf
+  1.2.1 steht.
+
 = 2.6.3 =
 * Banderole bei Matthias Fein: In Podlove hieß die Person erst „Matthias",
   jetzt „Matthias Fein" – der Schlüssel passt wieder. Beide Schreibweisen
