@@ -1,0 +1,786 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "eGovPod-2.6.4",
+  "documentNamespace": "https://github.com/tofrenz/egovpod-wordpress-theme/spdx/eGovPod-2.6.4-3910a014-ac22-43b3-af00-42144282da45",
+  "creationInfo": {
+    "created": "2026-10-23T06:58:01Z",
+    "creators": [
+      "Person: Torsten Frenzel",
+      "Tool: Claude-Opus-5"
+    ],
+    "licenseListVersion": "3.24"
+  },
+  "hasExtractedLicensingInfos": [
+    {
+      "licenseId": "LicenseRef-eGovPod-Marke",
+      "name": "Marke und Logo eGovernment Podcast",
+      "extractedText": "Marke und Logo des eGovernment Podcast sind von der Theme-Lizenz ausgenommen. Alle Rechte daran bleiben bei Torsten Frenzel; eine Weiterverwendung des Themes schliesst keine Rechte an der Marke ein."
+    }
+  ],
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-eGovPod",
+      "name": "eGovPod",
+      "versionInfo": "2.6.4",
+      "downloadLocation": "git+https://github.com/tofrenz/egovpod-wordpress-theme.git@627ef81ae55bd2aa72e8f4497647c3772e97e648",
+      "homepage": "https://www.egovernment-podcast.com/",
+      "filesAnalyzed": true,
+      "packageVerificationCode": {
+        "packageVerificationCodeValue": "5555e2f62718a04e82c798125e938b57a1586e71"
+      },
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseDeclared": "GPL-2.0-or-later OR EUPL-1.2",
+      "copyrightText": "Copyright 2026 Torsten Frenzel",
+      "supplier": "Person: Torsten Frenzel",
+      "originator": "Person: Torsten Frenzel",
+      "summary": "WordPress-Child-Theme von KERN-UX fuer den eGovernment Podcast.",
+      "comment": "Das Theme buendelt keine fremden Bibliotheken, Schriften oder Teile des KERN-Design-Systems; es verweist nur auf deren Klassen und Token. Marke und Logo des Podcast sind von der Theme-Lizenz ausgenommen, siehe LicenseRef-eGovPod-Marke.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/egovpod@2.6.4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-wordpress",
+      "name": "WordPress",
+      "downloadLocation": "https://wordpress.org",
+      "homepage": "https://wordpress.org",
+      "filesAnalyzed": false,
+      "licenseConcluded": "GPL-2.0-or-later",
+      "licenseDeclared": "GPL-2.0-or-later",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: WordPress Foundation",
+      "comment": "Laufzeitumgebung. Mindestversion aus dem Theme-Header, getestet bis 6.8.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/wordpress"
+        }
+      ],
+      "versionInfo": ">=6.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-php",
+      "name": "PHP",
+      "downloadLocation": "https://www.php.net",
+      "homepage": "https://www.php.net",
+      "filesAnalyzed": false,
+      "licenseConcluded": "PHP-3.01",
+      "licenseDeclared": "PHP-3.01",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: The PHP Group",
+      "comment": "Laufzeitumgebung. Mindestversion aus dem Theme-Header.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/php"
+        }
+      ],
+      "versionInfo": ">=7.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-kern-ux-theme",
+      "name": "KERN-UX WordPress Theme",
+      "downloadLocation": "https://gitlab.opencode.de/sgemlichheim/kern-ux-theme-for-wordpress",
+      "homepage": "https://gitlab.opencode.de/sgemlichheim/kern-ux-theme-for-wordpress",
+      "filesAnalyzed": false,
+      "licenseConcluded": "GPL-2.0-or-later",
+      "licenseDeclared": "GPL-2.0-or-later",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: Samtgemeinde Emlichheim, Michi91",
+      "comment": "Eltern-Theme, zwingend erforderlich. Ab eGovPod 2.6.4 mindestens 1.2.1, weil das Theme seither keine eigenen Farbzuweisungen fuer The Events Calendar mehr mitbringt. Haelt Kopf, Fuss, Navigation, Hell/Dunkel und das KERN-Kit bereit.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/kern-ux@1.2.1"
+        }
+      ],
+      "versionInfo": "1.2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-kern-native",
+      "name": "KERN Design System (@kern-ux/native)",
+      "downloadLocation": "https://gitlab.opencode.de/kern-ux/kern-ux-plain",
+      "homepage": "https://gitlab.opencode.de/kern-ux/kern-ux-plain",
+      "filesAnalyzed": false,
+      "licenseConcluded": "EUPL-1.2",
+      "licenseDeclared": "EUPL-1.2",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: KERN-Projekt (Hamburg / Schleswig-Holstein)",
+      "comment": "Kommt unveraendert mit dem Eltern-Theme unter assets/vendor/kern. Dieses Theme buendelt es nicht selbst, verweist nur auf dessen Klassen und Token. Version aus dem ver-Parameter, mit dem das Eltern-Theme das Kit einbindet; 2.6.1 ist auf npm am 2026-05-20 veroeffentlicht.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40kern-ux/native@2.6.1"
+        }
+      ],
+      "versionInfo": "2.6.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-podlove-publisher",
+      "name": "Podlove Podcast Publisher",
+      "downloadLocation": "https://podlove.org/podlove-publisher/",
+      "homepage": "https://podlove.org/podlove-publisher/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: Podlove",
+      "comment": "Liefert Episoden, Web Player und Feeds. Ohne das Plugin laeuft das Theme als gewoehnliches Blog-Theme; alle Zugriffe darauf sind abgesichert.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/podlove-podcasting-plugin-for-wordpress"
+        }
+      ],
+      "versionInfo": "NOASSERTION"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-podlove-subscribe-button",
+      "name": "Podlove Subscribe Button",
+      "downloadLocation": "https://podlove.org/podlove-subscribe-button/",
+      "homepage": "https://podlove.org/podlove-subscribe-button/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: Podlove",
+      "comment": "Abo-Button auf Startseite und Episodenseite. Rein optional.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/podlove-subscribe-button"
+        }
+      ],
+      "versionInfo": "NOASSERTION"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-fira-sans",
+      "name": "Fira Sans",
+      "downloadLocation": "https://github.com/carrois/Fira",
+      "homepage": "https://github.com/carrois/Fira",
+      "filesAnalyzed": false,
+      "licenseConcluded": "OFL-1.1",
+      "licenseDeclared": "OFL-1.1",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: Carrois Type Design, Mozilla",
+      "comment": "Schrift des KERN-Kits, kommt mit dem Eltern-Theme.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/fira-sans"
+        }
+      ],
+      "versionInfo": "NOASSERTION"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-noto-sans",
+      "name": "Noto Sans",
+      "downloadLocation": "https://fonts.google.com/noto",
+      "homepage": "https://fonts.google.com/noto",
+      "filesAnalyzed": false,
+      "licenseConcluded": "OFL-1.1",
+      "licenseDeclared": "OFL-1.1",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: Google",
+      "comment": "Ersatzschrift des KERN-Kits, kommt mit dem Eltern-Theme.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/noto-sans"
+        }
+      ],
+      "versionInfo": "NOASSERTION"
+    }
+  ],
+  "files": [
+    {
+      "SPDXID": "SPDXRef-File-.gitignore",
+      "fileName": "./.gitignore",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "6b0cb266446544dcf57e7214816eb6e4136da6af"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9db503ed914c815d9b425603a3ecf9e41b22505875c0cd4a6ff38dd6f22767d9"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-LICENSE",
+      "fileName": "./LICENSE",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "bf50aa352c7313d5efa5ac3a551fb2b5ab8d2067"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "52e1ddfcb26432f0417246f306b1c4d0666eb28adf04fb1d670ee15fe5300ae7"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-LICENSE.EUPL-1.2.txt",
+      "fileName": "./LICENSE.EUPL-1.2.txt",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "e9576c52632eefe4a87b8cfbade35c89a6b7078e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "57fb42fbcd0b037ce528ed8f72f1ec095d67bc6825ecf1448ff39be1fe68a4b4"
+        }
+      ],
+      "licenseConcluded": "EUPL-1.2",
+      "licenseInfoInFiles": [
+        "EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-README.md",
+      "fileName": "./README.md",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "88aa4a75b6203d20683b705615136e6686503cae"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4eb659b0bdd6fbe4c78f23a231eb91c77487713a418ecd3711eefcad2aef824b"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-archive-podcast.php",
+      "fileName": "./archive-podcast.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "a65522e44371c4549fb4cadcc3ee7de221dc81f5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a22147c1cba54fb936e76bcadd3974cd7338f0ad4c04c1ab73031bee503f7487"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-assets-images-logo.png",
+      "fileName": "./assets/images/logo.png",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "53c10f187727110d5367d35e4695cddabfacdf75"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "068c1e3d6fbd393ca8ec3660332120cef9dd06264d329645ae1aba5e3de20c53"
+        }
+      ],
+      "licenseConcluded": "LicenseRef-eGovPod-Marke",
+      "licenseInfoInFiles": [
+        "LicenseRef-eGovPod-Marke"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel - Marke, nicht unter der Theme-Lizenz"
+    },
+    {
+      "SPDXID": "SPDXRef-File-front-page.php",
+      "fileName": "./front-page.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "96775ed5376915650795b33f08b0ef1e74463e11"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c4f9a30e5c1dfc3095c90f2109e056e177b04f72afc71b71c8bfc29a31173dab"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-functions.php",
+      "fileName": "./functions.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "3ab195aaa0f624109f5a81fb955641e700ee20c6"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "098a1893300ccfd24c75e054020413357577a2386e237285538cfcfa46598977"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-inc-archive.php",
+      "fileName": "./inc/archive.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "59b61c4717195412a1a7cf13f5b3f5725f551651"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "62a59549a0d4625103d422c08eda32b7943a418143d3cef23fd47227033c63b5"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-inc-contributors.php",
+      "fileName": "./inc/contributors.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "74ed6d2c3aca2b8ff2230323b0941eaf26fbe036"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bbdd628fa4b81bfcce748dc090fe2687f204d84e43e92b3ba70915e9f0fae040"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-inc-customizer.php",
+      "fileName": "./inc/customizer.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "d03eb1d8f3c8ad3606e83c913e6da74d1644657f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "00f631f0804a3e4542111846d95219a6905888162c3ebc829e699fe305abf393"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-inc-podlove.php",
+      "fileName": "./inc/podlove.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "5defcbbd21370b5655ecef6269a83e32d9629d02"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3bd7a2b81fcd9b5b12b5cc04c679f4e28e5dbabe3e19a25e057738f24fd75a46"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-inc-template-tags.php",
+      "fileName": "./inc/template-tags.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "2f5fdf4470b450cab045d2acfc1873c745d98890"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c1e162758cbd68b37355942a3779fc6c087e3b62fcffaf2fcf186a7c164021b1"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-languages-.gitkeep",
+      "fileName": "./languages/.gitkeep",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-page-templates-template-contributors.php",
+      "fileName": "./page-templates/template-contributors.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "b62e3c9571e80629538ed21c4a9f354d035ef057"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8487335784636350aeeae3ff1719234ac839c46cb16c48d7213f32e4d59facce"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-page-templates-template-episodes.php",
+      "fileName": "./page-templates/template-episodes.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "616e567915902f5c7db143d0b8bf12ee7bede133"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bd1421348c3d3feb0425bc148315727abeb29f634e2c65f3b7bc3f096b510de7"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-readme.txt",
+      "fileName": "./readme.txt",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "16cfeccdf6eed14940112dbf840dad9a8dbb250e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2186b05d3daf421cab88d54863170ece01a52e7d91262bc0bcba69a119e2ce2d"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-screenshot.png",
+      "fileName": "./screenshot.png",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "a753b3fedf09ae040de4b011e123c894da013fa5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "93ce4018bde176e6994ae01a68dcf35641d1c2d167391ddd19d3c75b912f6ce4"
+        }
+      ],
+      "licenseConcluded": "LicenseRef-eGovPod-Marke",
+      "licenseInfoInFiles": [
+        "LicenseRef-eGovPod-Marke"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel - Marke, nicht unter der Theme-Lizenz"
+    },
+    {
+      "SPDXID": "SPDXRef-File-single-podcast.php",
+      "fileName": "./single-podcast.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "55183bc218d324abe5986d5b80eb401c547063ad"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c6fb99ed98fbdd78adb5f212c17e2615c5400f688002348f1cdbb0089aa9d244"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-style.css",
+      "fileName": "./style.css",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "d081cc335d72052d470dc5c58ba6a70f817417db"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dc1f1ab5fcd4c78939dbf34e63eddccf9f074a2332ece58bf160549724b0a92d"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-template-parts-content-card.php",
+      "fileName": "./template-parts/content-card.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "b0b9563992ed8dfcb22946aea0e08df7e30ab549"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9166f592bf7784f06f1ce1273616390358f6ad24e1313216125a66766b7e7cc9"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    },
+    {
+      "SPDXID": "SPDXRef-File-template-parts-episode-card.php",
+      "fileName": "./template-parts/episode-card.php",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "9523889f5f61207a41eab2eacd1ec8841338197e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ba72b904940f99a2bf743698a0e9da7ea2290a287eabb27daffaea94a2198db6"
+        }
+      ],
+      "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
+      "licenseInfoInFiles": [
+        "GPL-2.0-or-later OR EUPL-1.2"
+      ],
+      "copyrightText": "Copyright 2026 Torsten Frenzel"
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-eGovPod"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-.gitignore"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-LICENSE"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-LICENSE.EUPL-1.2.txt"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-README.md"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-archive-podcast.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-assets-images-logo.png"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-front-page.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-functions.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-inc-archive.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-inc-contributors.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-inc-customizer.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-inc-podlove.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-inc-template-tags.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-languages-.gitkeep"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-page-templates-template-contributors.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-page-templates-template-episodes.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-readme.txt"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-screenshot.png"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-single-podcast.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-style.css"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-template-parts-content-card.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-template-parts-episode-card.php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-wordpress"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-php"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eGovPod",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-kern-ux-theme"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-podlove-publisher",
+      "relationshipType": "OPTIONAL_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-eGovPod"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-podlove-subscribe-button",
+      "relationshipType": "OPTIONAL_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-eGovPod"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-kern-ux-theme",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-kern-native"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-kern-ux-theme",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-fira-sans"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-kern-ux-theme",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-noto-sans"
+    }
+  ]
+}

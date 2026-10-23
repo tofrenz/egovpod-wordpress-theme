@@ -1,0 +1,969 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:1b43a92a-1e2f-49b8-8e8e-031a03afb15b",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-23T06:58:01Z",
+    "authors": [
+      {
+        "name": "Torsten Frenzel"
+      }
+    ],
+    "component": {
+      "bom-ref": "egovpod",
+      "type": "application",
+      "name": "eGovPod",
+      "version": "2.6.4",
+      "description": "WordPress-Child-Theme von KERN-UX fuer den eGovernment Podcast mit dem Podlove Podcast Publisher.",
+      "supplier": {
+        "name": "Torsten Frenzel",
+        "url": [
+          "https://www.egovernment-podcast.com/"
+        ]
+      },
+      "authors": [
+        {
+          "name": "Torsten Frenzel"
+        }
+      ],
+      "copyright": "Copyright 2026 Torsten Frenzel",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "purl": "pkg:generic/egovpod@2.6.4",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://www.egovernment-podcast.com/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/tofrenz/egovpod-wordpress-theme"
+        },
+        {
+          "type": "distribution",
+          "url": "https://github.com/tofrenz/egovpod-wordpress-theme/archive/refs/heads/main.zip"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:commit",
+          "value": "627ef81ae55bd2aa72e8f4497647c3772e97e648"
+        },
+        {
+          "name": "egovpod:wordpress-mindestens",
+          "value": "6.4"
+        },
+        {
+          "name": "egovpod:wordpress-getestet-bis",
+          "value": "6.8"
+        },
+        {
+          "name": "egovpod:php-mindestens",
+          "value": "7.4"
+        },
+        {
+          "name": "egovpod:eltern-theme",
+          "value": "kern-ux"
+        },
+        {
+          "name": "egovpod:eigener-code",
+          "value": "Das Theme buendelt keine fremden Bibliotheken, Schriften oder Teile des KERN-Design-Systems."
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "wordpress",
+      "type": "application",
+      "name": "WordPress",
+      "supplier": {
+        "name": "WordPress Foundation"
+      },
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later"
+        }
+      ],
+      "scope": "required",
+      "purl": "pkg:generic/wordpress",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://wordpress.org"
+        }
+      ],
+      "description": "Laufzeitumgebung. Mindestversion aus dem Theme-Header, getestet bis 6.8.",
+      "version": ">=6.4",
+      "properties": [
+        {
+          "name": "egovpod:getestet-mit",
+          "value": "6.8"
+        }
+      ]
+    },
+    {
+      "bom-ref": "php",
+      "type": "application",
+      "name": "PHP",
+      "supplier": {
+        "name": "The PHP Group"
+      },
+      "licenses": [
+        {
+          "expression": "PHP-3.01"
+        }
+      ],
+      "scope": "required",
+      "purl": "pkg:generic/php",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://www.php.net"
+        }
+      ],
+      "description": "Laufzeitumgebung. Mindestversion aus dem Theme-Header.",
+      "version": ">=7.4"
+    },
+    {
+      "bom-ref": "kern-ux-theme",
+      "type": "library",
+      "name": "KERN-UX WordPress Theme",
+      "supplier": {
+        "name": "Samtgemeinde Emlichheim, Michi91"
+      },
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later"
+        }
+      ],
+      "scope": "required",
+      "purl": "pkg:generic/kern-ux@1.2.1",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://gitlab.opencode.de/sgemlichheim/kern-ux-theme-for-wordpress"
+        }
+      ],
+      "description": "Eltern-Theme, zwingend erforderlich. Ab eGovPod 2.6.4 mindestens 1.2.1, weil das Theme seither keine eigenen Farbzuweisungen fuer The Events Calendar mehr mitbringt. Haelt Kopf, Fuss, Navigation, Hell/Dunkel und das KERN-Kit bereit.",
+      "version": "1.2.1"
+    },
+    {
+      "bom-ref": "kern-native",
+      "type": "library",
+      "name": "KERN Design System (@kern-ux/native)",
+      "supplier": {
+        "name": "KERN-Projekt (Hamburg / Schleswig-Holstein)"
+      },
+      "licenses": [
+        {
+          "expression": "EUPL-1.2"
+        }
+      ],
+      "scope": "required",
+      "purl": "pkg:npm/%40kern-ux/native@2.6.1",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://gitlab.opencode.de/kern-ux/kern-ux-plain"
+        }
+      ],
+      "description": "Kommt unveraendert mit dem Eltern-Theme unter assets/vendor/kern. Dieses Theme buendelt es nicht selbst, verweist nur auf dessen Klassen und Token. Version aus dem ver-Parameter, mit dem das Eltern-Theme das Kit einbindet; 2.6.1 ist auf npm am 2026-05-20 veroeffentlicht.",
+      "version": "2.6.1"
+    },
+    {
+      "bom-ref": "podlove-publisher",
+      "type": "library",
+      "name": "Podlove Podcast Publisher",
+      "supplier": {
+        "name": "Podlove"
+      },
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "scope": "optional",
+      "purl": "pkg:generic/podlove-podcasting-plugin-for-wordpress",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://podlove.org/podlove-publisher/"
+        }
+      ],
+      "description": "Liefert Episoden, Web Player und Feeds. Ohne das Plugin laeuft das Theme als gewoehnliches Blog-Theme; alle Zugriffe darauf sind abgesichert.",
+      "properties": [
+        {
+          "name": "egovpod:getestet-mit",
+          "value": "4.5.8"
+        }
+      ]
+    },
+    {
+      "bom-ref": "podlove-subscribe-button",
+      "type": "library",
+      "name": "Podlove Subscribe Button",
+      "supplier": {
+        "name": "Podlove"
+      },
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "scope": "optional",
+      "purl": "pkg:generic/podlove-subscribe-button",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://podlove.org/podlove-subscribe-button/"
+        }
+      ],
+      "description": "Abo-Button auf Startseite und Episodenseite. Rein optional."
+    },
+    {
+      "bom-ref": "fira-sans",
+      "type": "library",
+      "name": "Fira Sans",
+      "supplier": {
+        "name": "Carrois Type Design, Mozilla"
+      },
+      "licenses": [
+        {
+          "expression": "OFL-1.1"
+        }
+      ],
+      "scope": "required",
+      "purl": "pkg:generic/fira-sans",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/carrois/Fira"
+        }
+      ],
+      "description": "Schrift des KERN-Kits, kommt mit dem Eltern-Theme."
+    },
+    {
+      "bom-ref": "noto-sans",
+      "type": "library",
+      "name": "Noto Sans",
+      "supplier": {
+        "name": "Google"
+      },
+      "licenses": [
+        {
+          "expression": "OFL-1.1"
+        }
+      ],
+      "scope": "required",
+      "purl": "pkg:generic/noto-sans",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://fonts.google.com/noto"
+        }
+      ],
+      "description": "Ersatzschrift des KERN-Kits, kommt mit dem Eltern-Theme."
+    },
+    {
+      "bom-ref": "datei:.gitignore",
+      "type": "file",
+      "name": ".gitignore",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "6b0cb266446544dcf57e7214816eb6e4136da6af"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "9db503ed914c815d9b425603a3ecf9e41b22505875c0cd4a6ff38dd6f22767d9"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "71f7660b3549828b7614c9c9774be29ffab8678971792389387a86913348f18792ff620380d0a6f9c56461e1182b327121664c4bc8e18ac7dad3f3eaf91dbd1c"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "26"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:LICENSE",
+      "type": "file",
+      "name": "LICENSE",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "bf50aa352c7313d5efa5ac3a551fb2b5ab8d2067"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "52e1ddfcb26432f0417246f306b1c4d0666eb28adf04fb1d670ee15fe5300ae7"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "c509a356ba82fca1046a6a7a3c8bcb48d0341891ed8271c70a489daea4a02832b161ec37de5a16b986581f7d0d3a2131b74acd7a749e759517b8a33a6769dc70"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "19868"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:LICENSE.EUPL-1.2.txt",
+      "type": "file",
+      "name": "LICENSE.EUPL-1.2.txt",
+      "licenses": [
+        {
+          "expression": "EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "e9576c52632eefe4a87b8cfbade35c89a6b7078e"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "57fb42fbcd0b037ce528ed8f72f1ec095d67bc6825ecf1448ff39be1fe68a4b4"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "7f78661023069464392bde6c41acfc0bc9cf586d8fc4c77517ba367deffa981f4294f5290cf5e6d1d6b353d199b4e2729695af979a63a75444b047689a3497f2"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "13792"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:README.md",
+      "type": "file",
+      "name": "README.md",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "88aa4a75b6203d20683b705615136e6686503cae"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "4eb659b0bdd6fbe4c78f23a231eb91c77487713a418ecd3711eefcad2aef824b"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "2848391e6c98e8aebe1d64f4d48f75fd3b3be4690439ea6732e4ccaf149eef3982bc64533da869ffd8eb6d41409bc8801170165f070717527cea1ca48bf0c595"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "7212"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:archive-podcast.php",
+      "type": "file",
+      "name": "archive-podcast.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "a65522e44371c4549fb4cadcc3ee7de221dc81f5"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "a22147c1cba54fb936e76bcadd3974cd7338f0ad4c04c1ab73031bee503f7487"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "e31697669c13b5eebe0d213b74c016551fafa47154cc2e4e6ef33ecb51d80b7817b9c6921a3a0ad0bcc00ec5407c21157baa40f417a3c756c6b2eeacbd41cc9f"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "1337"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:assets/images/logo.png",
+      "type": "file",
+      "name": "assets/images/logo.png",
+      "licenses": [
+        {
+          "license": {
+            "name": "LicenseRef-eGovPod-Marke",
+            "text": {
+              "content": "Marke und Logo des eGovernment Podcast sind von der Theme-Lizenz ausgenommen. Alle Rechte daran bleiben bei Torsten Frenzel; eine Weiterverwendung des Themes schliesst keine Rechte an der Marke ein."
+            }
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "53c10f187727110d5367d35e4695cddabfacdf75"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "068c1e3d6fbd393ca8ec3660332120cef9dd06264d329645ae1aba5e3de20c53"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "e6a6419e0db473164c58234b0317f41a43c2f9b4b7793278ae0d9c552901783cd91dba9a46ad59160bf5913bb3b08477ddd82f0b63ab51f98867ebb7a45b0471"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "11462"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:front-page.php",
+      "type": "file",
+      "name": "front-page.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "96775ed5376915650795b33f08b0ef1e74463e11"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "c4f9a30e5c1dfc3095c90f2109e056e177b04f72afc71b71c8bfc29a31173dab"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "c70b8a3e8973ba88e934f4a8be0e0e9fa69a2f01d9c7fb0c2ccf12cc494b56c60c6eebc900b6ce9fd8476f46d0126f6cabc3fb72c38c5d2f6083c0f5e121f98d"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "6999"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:functions.php",
+      "type": "file",
+      "name": "functions.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "3ab195aaa0f624109f5a81fb955641e700ee20c6"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "098a1893300ccfd24c75e054020413357577a2386e237285538cfcfa46598977"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "5a5b9661c468aab581d25a7de003be4ca16e72d08ec2337fe482cb4a60d8899abb44076434c843bec88f3120b3340f663f7b3f13ac4ac052289751145f390d94"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "8161"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:inc/archive.php",
+      "type": "file",
+      "name": "inc/archive.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "59b61c4717195412a1a7cf13f5b3f5725f551651"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "62a59549a0d4625103d422c08eda32b7943a418143d3cef23fd47227033c63b5"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "eacb262f0cfebb6bd59ecbf36c2a83d39578ba2c815d879319b915bbfb649281e648d67a773341b0c42cadd215ae8e6c12a3a662d16fb7e3739e44a2b03e15de"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "16414"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:inc/contributors.php",
+      "type": "file",
+      "name": "inc/contributors.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "74ed6d2c3aca2b8ff2230323b0941eaf26fbe036"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "bbdd628fa4b81bfcce748dc090fe2687f204d84e43e92b3ba70915e9f0fae040"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "4076a9ebc481586a660b74d01b2aadd1ad1ac6fc4cdc1c0bc3565707385c1309de985a94337337c2107a36da2753435357f75e2edfa81f8a33692b6875c0e7b2"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "10896"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:inc/customizer.php",
+      "type": "file",
+      "name": "inc/customizer.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "d03eb1d8f3c8ad3606e83c913e6da74d1644657f"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "00f631f0804a3e4542111846d95219a6905888162c3ebc829e699fe305abf393"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "e136de7153fde5ad5affe922afc95b101730faa80677921bbc94539456cc4023db6945467fd8c0f4da6b0512906a95b4578a7429b902bae52e3881a30bfab0ba"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "6999"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:inc/podlove.php",
+      "type": "file",
+      "name": "inc/podlove.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "5defcbbd21370b5655ecef6269a83e32d9629d02"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "3bd7a2b81fcd9b5b12b5cc04c679f4e28e5dbabe3e19a25e057738f24fd75a46"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "4e5f0e59b45727f57a68828416c9b772182698bbe8a3eb2ff41a65229ed2b5eebd0b49fdf8a2f7442f0353e1bcb1024480b5b46f029a87bf46110f41704b9218"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "19471"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:inc/template-tags.php",
+      "type": "file",
+      "name": "inc/template-tags.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "2f5fdf4470b450cab045d2acfc1873c745d98890"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "c1e162758cbd68b37355942a3779fc6c087e3b62fcffaf2fcf186a7c164021b1"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "a18da586c8efa24eb0c7bec7f2060bd8419f3eff87f5e72d9a1dfa7d34024038332bd94ef4e25effe0905030a97134f90658603c20f55513504b3f0c10f273ad"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "5602"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:languages/.gitkeep",
+      "type": "file",
+      "name": "languages/.gitkeep",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:page-templates/template-contributors.php",
+      "type": "file",
+      "name": "page-templates/template-contributors.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "b62e3c9571e80629538ed21c4a9f354d035ef057"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "8487335784636350aeeae3ff1719234ac839c46cb16c48d7213f32e4d59facce"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "c4212fea8329e91bcdea398f3118314b6d3afb172175191d17ca59e00a09f6fa41b6bedb46b98205619ea203cfef273aad54a95e957d395574bf789af077d664"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "1723"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:page-templates/template-episodes.php",
+      "type": "file",
+      "name": "page-templates/template-episodes.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "616e567915902f5c7db143d0b8bf12ee7bede133"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "bd1421348c3d3feb0425bc148315727abeb29f634e2c65f3b7bc3f096b510de7"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "9fe03774fe99a11e7b5aff1ecab9405c64e36df3ed8218d7d0c6a78c3ea76a0591f74d0e3cfdbef0fa7447362a31898493f97564ad523d19c11e5e7f0fe936bc"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "1978"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:readme.txt",
+      "type": "file",
+      "name": "readme.txt",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "16cfeccdf6eed14940112dbf840dad9a8dbb250e"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "2186b05d3daf421cab88d54863170ece01a52e7d91262bc0bcba69a119e2ce2d"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "6c28e389bb34aa6fc1c458f713398f1876c747fe802d65c605df226ef9a9e893953bbc28b739450a69c87b9df769f8e6b083464a10cd2e1bb55aa3464875edc1"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "12472"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:screenshot.png",
+      "type": "file",
+      "name": "screenshot.png",
+      "licenses": [
+        {
+          "license": {
+            "name": "LicenseRef-eGovPod-Marke",
+            "text": {
+              "content": "Marke und Logo des eGovernment Podcast sind von der Theme-Lizenz ausgenommen. Alle Rechte daran bleiben bei Torsten Frenzel; eine Weiterverwendung des Themes schliesst keine Rechte an der Marke ein."
+            }
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "a753b3fedf09ae040de4b011e123c894da013fa5"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "93ce4018bde176e6994ae01a68dcf35641d1c2d167391ddd19d3c75b912f6ce4"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "179d7c2eb50e5be08872e009e77898a3ae40359c35f304e709cc3f935ca6a5b45502ab3e7c79bfc5618158149cea850c50ee50fc72512d554f6622603dff9f42"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "157627"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:single-podcast.php",
+      "type": "file",
+      "name": "single-podcast.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "55183bc218d324abe5986d5b80eb401c547063ad"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "c6fb99ed98fbdd78adb5f212c17e2615c5400f688002348f1cdbb0089aa9d244"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "02c7d631e1e60875830e1a809da64d5b3ca1f42755d4883eb1b583ef1385742f2bc59c3dfcf604a63ede89d0a1688f86b74453f574bdeea569e3b28a7785363c"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "9420"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:style.css",
+      "type": "file",
+      "name": "style.css",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "d081cc335d72052d470dc5c58ba6a70f817417db"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "dc1f1ab5fcd4c78939dbf34e63eddccf9f074a2332ece58bf160549724b0a92d"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "8babcb9f5c1b912591b7e224308afe6ce540b34c3ec02313d4df90db8f6ab59b0a1094f0e19167dc17e64bf8f9115034bf626fdae5fa5a08f07f10b5fe46a77d"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "40367"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:template-parts/content-card.php",
+      "type": "file",
+      "name": "template-parts/content-card.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "b0b9563992ed8dfcb22946aea0e08df7e30ab549"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "9166f592bf7784f06f1ce1273616390358f6ad24e1313216125a66766b7e7cc9"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "adae52c2dbeda6a57f548bd9dc2a6d82df379251f150685a5842ba3512cd35ebac055d8a6dedf1d1590536256673e4dd50775a796716e0972825f19798ddb379"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "1300"
+        }
+      ]
+    },
+    {
+      "bom-ref": "datei:template-parts/episode-card.php",
+      "type": "file",
+      "name": "template-parts/episode-card.php",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-or-later OR EUPL-1.2"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "9523889f5f61207a41eab2eacd1ec8841338197e"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "ba72b904940f99a2bf743698a0e9da7ea2290a287eabb27daffaea94a2198db6"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "4a26c38870b585f7d370b4a94d6860ebaf161569b5d6fe73359894954a090a9fc7fed3bfabe15ce342a404796dc38edb97ba484bd7f72e8418fb82fd600c0624"
+        }
+      ],
+      "properties": [
+        {
+          "name": "egovpod:bytes",
+          "value": "1697"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "egovpod",
+      "dependsOn": [
+        "wordpress",
+        "php",
+        "kern-ux-theme",
+        "podlove-publisher",
+        "podlove-subscribe-button"
+      ]
+    },
+    {
+      "ref": "kern-ux-theme",
+      "dependsOn": [
+        "kern-native",
+        "fira-sans",
+        "noto-sans"
+      ]
+    },
+    {
+      "ref": "wordpress",
+      "dependsOn": [
+        "php"
+      ]
+    }
+  ]
+}
