@@ -99,6 +99,12 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.6 =
+* Die drei Download-Knöpfe brachen in der Kartenansicht auf zwei Zeilen um —
+  „PDF" rutschte allein in die zweite. Sie teilen sich jetzt die Kartenbreite
+  und stehen nebeneinander. Die Breitenangaben stehen am Listenelement, denn
+  das ist das Flex-Element, nicht der Link darin.
+
 = 2.6.5 =
 * Transkripte als Download: Unter jeder Folge mit Transkript stehen jetzt
   Knöpfe für HTML, Text und PDF. HTML und Text kommen als Datei, PDF über eine
