@@ -2,10 +2,10 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "eGovPod-2.6.6",
-  "documentNamespace": "https://github.com/tofrenz/egovpod-wordpress-theme/spdx/eGovPod-2.6.6-c12ddf87-38a7-4bf0-a255-82ab7ac3caed",
+  "name": "eGovPod-2.6.7",
+  "documentNamespace": "https://github.com/tofrenz/egovpod-wordpress-theme/spdx/eGovPod-2.6.7-c8fc8ace-2f73-4ca9-a7bf-08e014a3e955",
   "creationInfo": {
-    "created": "2026-10-24T12:27:35Z",
+    "created": "2026-10-24T13:48:03Z",
     "creators": [
       "Person: Torsten Frenzel",
       "Tool: Claude-Opus-5"
@@ -23,12 +23,12 @@
     {
       "SPDXID": "SPDXRef-Package-eGovPod",
       "name": "eGovPod",
-      "versionInfo": "2.6.6",
-      "downloadLocation": "git+https://github.com/tofrenz/egovpod-wordpress-theme.git@8c80bafb6ef100ad3f23ad4d233a542590c80272",
+      "versionInfo": "2.6.7",
+      "downloadLocation": "git+https://github.com/tofrenz/egovpod-wordpress-theme.git@5c40858c44913c527fd3e6e7ca065150b1d99088",
       "homepage": "https://www.egovernment-podcast.com/",
       "filesAnalyzed": true,
       "packageVerificationCode": {
-        "packageVerificationCodeValue": "caa1e263e1df8abad0ad132f5d8f0143be866e20"
+        "packageVerificationCodeValue": "279ffd105630ca3adb377acb36f6685c6fdcd680"
       },
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
       "licenseDeclared": "GPL-2.0-or-later OR EUPL-1.2",
@@ -41,7 +41,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:generic/egovpod@2.6.6"
+          "referenceLocator": "pkg:generic/egovpod@2.6.7"
         }
       ]
     },
@@ -346,11 +346,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "805a8b993eba2a3565e3adc4dce8e08796bcadf9"
+          "checksumValue": "45b39ff661bd1bb626334eb370aece348495bf7d"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "ebe539c0172a0097182731c97dd37a1c37bb92d1eeb3bdfcb4817add65b2a08d"
+          "checksumValue": "587c81d2ccccf68f682714277c5f0f21d785388dc58077353023f5b89ffa00d4"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
@@ -441,11 +441,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "a2fca0bba62a8f9d83ec7461afffe011727c7848"
+          "checksumValue": "6e5577d3133f03ae07b812dc2cb5d35a37385bf9"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "243526c548f7de2d121b9c379cff9ba39fc072c5567c76ef13fc3263c17b766b"
+          "checksumValue": "70d11d4227855dba4a886730512ce570fd65a5325c47664bc172586d1660a796"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
@@ -555,11 +555,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "67f1444bf5425518eb3cdeb6586271d2c07b47d5"
+          "checksumValue": "939d77e0151095d29e79a64db397c8fb6c6df907"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "1afc0dae2589c42e2868d7e287c013f7e15b0fe12f8244097a3926286cae4d6b"
+          "checksumValue": "9ec0c73827f2ee9b723fdd223b967dbf249bc62137366672a576b67f00d4317c"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
@@ -593,11 +593,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "de6eca2c3ed7c3a323b5d1aed0637bee56cdb66d"
+          "checksumValue": "7a725fcb358cb746343e3902b521fa70d52ef9de"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "0c9c263fb754d249387f54ed4423a7604b983fbbbe7031f17e944271bb417f77"
+          "checksumValue": "c70d317d94ae10c5777f9d6d90189020f896a5d23b2cf21fc5e343a856e4b5b3"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
@@ -612,11 +612,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "9ad76e83328fcad161a40b7ac136f3d59e5371ff"
+          "checksumValue": "7d8bb5b2100be76d17c50f275fabe420b05ed8d8"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "513948140e3e9b9193a776f6cf121f484805bef1ec22d7610c6f5f9212f4c34a"
+          "checksumValue": "0306c6d6f6ec974188767117c5c9816f3368b77ac670f557f8a22ab4e0956991"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
