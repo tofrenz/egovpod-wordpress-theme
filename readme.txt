@@ -99,6 +99,12 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.10 =
+* Nachtrag zu 2.6.9: In der Listendarstellung brachen die Titel der
+  Transkript-Folgen über mehrere Zeilen um, statt mit „…" abgeschnitten zu
+  werden. Die Regel dafür zielte auf den Link *in* der Überschrift — und der
+  sitzt bei diesen Karten seit 2.6.9 über der ganzen Karte.
+
 = 2.6.9 =
 * Die drei Download-Knöpfe überdeckten sich in der Listendarstellung. Ursache:
   `.kern-btn` setzt `min-width: fit-content`, der Knopf konnte also nicht
