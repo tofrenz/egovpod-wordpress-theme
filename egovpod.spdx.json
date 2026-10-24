@@ -2,10 +2,10 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "eGovPod-2.6.7",
-  "documentNamespace": "https://github.com/tofrenz/egovpod-wordpress-theme/spdx/eGovPod-2.6.7-c8fc8ace-2f73-4ca9-a7bf-08e014a3e955",
+  "name": "eGovPod-2.6.8",
+  "documentNamespace": "https://github.com/tofrenz/egovpod-wordpress-theme/spdx/eGovPod-2.6.8-ee842b91-dce3-4955-a9f9-5a2662c8a85d",
   "creationInfo": {
-    "created": "2026-10-24T13:48:03Z",
+    "created": "2026-10-24T14:38:11Z",
     "creators": [
       "Person: Torsten Frenzel",
       "Tool: Claude-Opus-5"
@@ -23,12 +23,12 @@
     {
       "SPDXID": "SPDXRef-Package-eGovPod",
       "name": "eGovPod",
-      "versionInfo": "2.6.7",
-      "downloadLocation": "git+https://github.com/tofrenz/egovpod-wordpress-theme.git@5c40858c44913c527fd3e6e7ca065150b1d99088",
+      "versionInfo": "2.6.8",
+      "downloadLocation": "git+https://github.com/tofrenz/egovpod-wordpress-theme.git@ced66c20e61a5eb5adec44e141837f1cb88f1325",
       "homepage": "https://www.egovernment-podcast.com/",
       "filesAnalyzed": true,
       "packageVerificationCode": {
-        "packageVerificationCodeValue": "279ffd105630ca3adb377acb36f6685c6fdcd680"
+        "packageVerificationCodeValue": "27728fb0e32b182c4361e011ed155dcaad6bf66c"
       },
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
       "licenseDeclared": "GPL-2.0-or-later OR EUPL-1.2",
@@ -41,7 +41,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:generic/egovpod@2.6.7"
+          "referenceLocator": "pkg:generic/egovpod@2.6.8"
         }
       ]
     },
@@ -270,11 +270,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "279df6a377dfcda668bf630c5c0d2f652429cf52"
+          "checksumValue": "c4fef3472c66a73048a457a8af3a32694ef2cd41"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "34b637e5fffd994ff28c3432a3ca59a2a9a0fe751e849a8ee2ea985d3cb86271"
+          "checksumValue": "7c13be7b1a654c6ef500c3be0da95154dd4fbabee7c6f7aaf96fe5980c23f16c"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
@@ -346,11 +346,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "45b39ff661bd1bb626334eb370aece348495bf7d"
+          "checksumValue": "3f76f7474abcb4897dc47c2b60ac9bc0fcd17863"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "587c81d2ccccf68f682714277c5f0f21d785388dc58077353023f5b89ffa00d4"
+          "checksumValue": "a39b118c6a6e743f3cdd1f5e4143942b6d6c21d94a798abfc6e2a438bdb07b82"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
@@ -555,11 +555,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "939d77e0151095d29e79a64db397c8fb6c6df907"
+          "checksumValue": "92cc417a7dd7974e702745637263e04e947e5c30"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "9ec0c73827f2ee9b723fdd223b967dbf249bc62137366672a576b67f00d4317c"
+          "checksumValue": "8149d78445ce5323884f36d0fc6e4f4be00713d4ceadedd94e8430dde2a52c70"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",
@@ -612,11 +612,11 @@
       "checksums": [
         {
           "algorithm": "SHA1",
-          "checksumValue": "7d8bb5b2100be76d17c50f275fabe420b05ed8d8"
+          "checksumValue": "124334f86ded2b9d9e0792e7633817aa11baa4ea"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "0306c6d6f6ec974188767117c5c9816f3368b77ac670f557f8a22ab4e0956991"
+          "checksumValue": "a42c35065b01df78ad35bc94f04d767bf2d6adb5a8dbd72d69e95f405824b3a9"
         }
       ],
       "licenseConcluded": "GPL-2.0-or-later OR EUPL-1.2",

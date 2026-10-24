@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ebe77e60-d07d-4c7d-aa8f-3d176afb0aa9",
+  "serialNumber": "urn:uuid:0728e1c2-70cd-4858-98ac-ef30549846d1",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-24T13:48:03Z",
+    "timestamp": "2026-10-24T14:38:11Z",
     "authors": [
       {
         "name": "Torsten Frenzel"
@@ -14,7 +14,7 @@
       "bom-ref": "egovpod",
       "type": "application",
       "name": "eGovPod",
-      "version": "2.6.7",
+      "version": "2.6.8",
       "description": "WordPress-Child-Theme von KERN-UX fuer den eGovernment Podcast mit dem Podlove Podcast Publisher.",
       "supplier": {
         "name": "Torsten Frenzel",
@@ -33,7 +33,7 @@
           "expression": "GPL-2.0-or-later OR EUPL-1.2"
         }
       ],
-      "purl": "pkg:generic/egovpod@2.6.7",
+      "purl": "pkg:generic/egovpod@2.6.8",
       "externalReferences": [
         {
           "type": "website",
@@ -51,7 +51,7 @@
       "properties": [
         {
           "name": "egovpod:commit",
-          "value": "5c40858c44913c527fd3e6e7ca065150b1d99088"
+          "value": "ced66c20e61a5eb5adec44e141837f1cb88f1325"
         },
         {
           "name": "egovpod:wordpress-mindestens",
@@ -371,21 +371,21 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "279df6a377dfcda668bf630c5c0d2f652429cf52"
+          "content": "c4fef3472c66a73048a457a8af3a32694ef2cd41"
         },
         {
           "alg": "SHA-256",
-          "content": "34b637e5fffd994ff28c3432a3ca59a2a9a0fe751e849a8ee2ea985d3cb86271"
+          "content": "7c13be7b1a654c6ef500c3be0da95154dd4fbabee7c6f7aaf96fe5980c23f16c"
         },
         {
           "alg": "SHA-512",
-          "content": "a81007476faa744e680d5dbafb33081ad21e586528bf62027e492f55e7235828f5e3fd6cd04d1c4676f822f4ec216f281bc99c8fcdcbee6f48e371a7282fb8fb"
+          "content": "9628d319a7cfe78ced5a28b0e2fff4a14b2459ba7324a8dc569a90f3a7ad9fb9f5c36a896ce602d3fa7854d23dbabacf2f7f6509b162229f2100d7b0fa44be5f"
         }
       ],
       "properties": [
         {
           "name": "egovpod:bytes",
-          "value": "8939"
+          "value": "9276"
         }
       ]
     },
@@ -496,15 +496,15 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "45b39ff661bd1bb626334eb370aece348495bf7d"
+          "content": "3f76f7474abcb4897dc47c2b60ac9bc0fcd17863"
         },
         {
           "alg": "SHA-256",
-          "content": "587c81d2ccccf68f682714277c5f0f21d785388dc58077353023f5b89ffa00d4"
+          "content": "a39b118c6a6e743f3cdd1f5e4143942b6d6c21d94a798abfc6e2a438bdb07b82"
         },
         {
           "alg": "SHA-512",
-          "content": "788a1deaf8c5e791ad003245b79176b823af21607d25e1581606e1e47a1990b4891ef0d9f950635086cef3685712ab4fc14865c1a2eb3aee058bf1b9255f1b38"
+          "content": "5168e3951ac6b328059132bde06e4642925a44498b9a29a8dedc45f0c58a5308c3d12989c0743baad446512cc42cbde89f1dd8adcf93f94549d71df0c473e184"
         }
       ],
       "properties": [
@@ -826,21 +826,21 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "939d77e0151095d29e79a64db397c8fb6c6df907"
+          "content": "92cc417a7dd7974e702745637263e04e947e5c30"
         },
         {
           "alg": "SHA-256",
-          "content": "9ec0c73827f2ee9b723fdd223b967dbf249bc62137366672a576b67f00d4317c"
+          "content": "8149d78445ce5323884f36d0fc6e4f4be00713d4ceadedd94e8430dde2a52c70"
         },
         {
           "alg": "SHA-512",
-          "content": "df029feb82d3b554964fa46775bba3d275e90c9ac2ffc3bc7c639499a16efdd6dff575162ec17997c041aac61ad959929fd703477a451e1121bf77df6114af8c"
+          "content": "2fa8853acbf984b967c178ff647a4165c746d10c377f59ac264b83dcd09a154e85242325a3ba4bef285f6b9206b20d72cb68e2f4a2c47270ec61cbe95aafc1f8"
         }
       ],
       "properties": [
         {
           "name": "egovpod:bytes",
-          "value": "14908"
+          "value": "15683"
         }
       ]
     },
@@ -921,21 +921,21 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "7d8bb5b2100be76d17c50f275fabe420b05ed8d8"
+          "content": "124334f86ded2b9d9e0792e7633817aa11baa4ea"
         },
         {
           "alg": "SHA-256",
-          "content": "0306c6d6f6ec974188767117c5c9816f3368b77ac670f557f8a22ab4e0956991"
+          "content": "a42c35065b01df78ad35bc94f04d767bf2d6adb5a8dbd72d69e95f405824b3a9"
         },
         {
           "alg": "SHA-512",
-          "content": "afcec6317a2052cbf238c7757bcda7320ca62f02c1fb290326c2d5370afda46cf34576f895869e830c6dc2906b780c725e3ac219a39cebb46e39854fb3c01192"
+          "content": "2668ec0d090a4706c0342d7d3ad8eee2e3d8739fabc7529b452cbf505cb2ce0d9285263352d7ba06f3bc3ab018107deaebe8227e38929e7d38917f1cd58636fe"
         }
       ],
       "properties": [
         {
           "name": "egovpod:bytes",
-          "value": "43909"
+          "value": "49251"
         }
       ]
     },
