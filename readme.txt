@@ -99,6 +99,30 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.5 =
+* Transkripte als Download: Unter jeder Folge mit Transkript stehen jetzt
+  Knöpfe für HTML, Text und PDF. HTML und Text kommen als Datei, PDF über eine
+  eigene Druckansicht — ohne eine fremde Bibliothek im Theme.
+* Neues Seiten-Template „Transkripte": dieselbe Darstellung wie das
+  Episodenarchiv (Suche, Jahresleiste, Umschalter Karten/Liste, Blätterung),
+  eingeschränkt auf Folgen mit Transkript und mit der Knopfreihe je Folge.
+  Die Liste entsteht bei jedem Aufruf neu — eine neue Folge steht sofort drin,
+  sobald ihr Transkript in Podlove liegt. Eine von Hand gepflegte Linkliste im
+  Seiteninhalt wird dabei übersprungen und bleibt gespeichert.
+* Die Daten kommen aus dem Podlove-Modul „Transcripts" über dessen eigene
+  Methoden, nicht aus dem gerenderten Akkordeon — das umfasst je Folge rund
+  144 KB HTML und wäre für eine Liste unbrauchbar.
+* Der Hell/Dunkel-Umschalter des Eltern-Themes war in seinen beiden Zuständen
+  unterschiedlich breit (192 gegenüber 198 Pixel), wodurch beim Umschalten
+  alles daneben sprang. Die Beschriftung bekommt eine Mindestbreite, die beide
+  Zustände fasst; der Knopf behält seine Breite und das Symbol bleibt stehen.
+  Gegen die Live-Seite gemessen: beide Zustände 208 Pixel, Sprung 0.
+* Die Suche auf den Seiten „Episodenarchiv" und „Transkripte" bleibt jetzt auf
+  der Seite, statt in die allgemeine Trefferliste zu springen. Dafür gibt es
+  die eigene Adressvariable `egp_q`; ein `s` in der Adresse einer Seite macht
+  aus der Hauptabfrage eine Suche und führt auf 404. Jahresleiste und
+  Blätterung behalten Suchbegriff und Jahr.
+
 = 2.6.4 =
 * Buchstabenleiste auf der Teilnehmer:innen-Seite: Sie klebte als schmaler
   Streifen links statt sich über die Textbreite zu verteilen, jeder Buchstabe

@@ -14,6 +14,7 @@ get_header();
 
 $egp_paged = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
 $egp_query = new WP_Query( egovpod_archive_query_args( $egp_paged ) );
+$egp_basis = get_permalink();
 ?>
 
 <?php if ( function_exists( 'kern_ux_breadcrumb' ) ) { kern_ux_breadcrumb(); } ?>
@@ -34,10 +35,10 @@ $egp_query = new WP_Query( egovpod_archive_query_args( $egp_paged ) );
 		}
 	endwhile;
 	?>
-	<?php egovpod_episode_search_form(); ?>
+	<?php egovpod_episode_search_form( $egp_basis ); ?>
 </header>
 
-<?php egovpod_year_nav(); ?>
+<?php egovpod_year_nav( false, $egp_basis ); ?>
 
 <?php if ( $egp_query->have_posts() ) : ?>
 

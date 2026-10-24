@@ -123,6 +123,11 @@ while ( have_posts() ) :
 											<?php echo $egp_transcript; // phpcs:ignore WordPress.Security.EscapeOutput ?>
 										</section>
 									</details>
+									<?php
+									if ( function_exists( 'egovpod_transcript_downloads' ) ) {
+										egovpod_transcript_downloads();
+									}
+									?>
 								</section>
 							<?php endif; ?>
 						<?php endif; ?>

@@ -5,12 +5,13 @@
  * @package eGovPod
  */
 
-$egp_cover    = egovpod_cover_url( get_the_ID(), 480 );
-$egp_subtitle = egovpod_episode_subtitle();
-$egp_number   = egovpod_episode_number();
-$egp_heading  = isset( $args['heading'] ) ? $args['heading'] : 'h3';
+$egp_cover      = egovpod_cover_url( get_the_ID(), 480 );
+$egp_subtitle   = egovpod_episode_subtitle();
+$egp_number     = egovpod_episode_number();
+$egp_heading    = isset( $args['heading'] ) ? $args['heading'] : 'h3';
+$egp_transkript = ! empty( $args['transkript'] );
 ?>
-<article <?php post_class( 'kern-card kern-card--interactive egp-card' ); ?>>
+<article <?php post_class( 'kern-card kern-card--interactive egp-card' . ( $egp_transkript ? ' egp-card--transkript' : '' ) ); ?>>
 	<?php if ( $egp_cover ) : ?>
 		<div class="kern-card__media">
 			<img src="<?php echo esc_url( $egp_cover ); ?>" alt="" loading="lazy" decoding="async" width="480" height="480">
@@ -41,6 +42,9 @@ $egp_heading  = isset( $args['heading'] ) ? $args['heading'] : 'h3';
 			<?php
 			if ( function_exists( 'egovpod_episode_contributor_row' ) ) {
 				egovpod_episode_contributor_row();
+			}
+			if ( $egp_transkript && function_exists( 'egovpod_transcript_downloads' ) ) {
+				egovpod_transcript_downloads( null, 'egp-ts-downloads--karte' );
 			}
 			?>
 		</footer>

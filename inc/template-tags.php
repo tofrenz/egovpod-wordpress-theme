@@ -84,16 +84,29 @@ function egovpod_pagination() {
 
 /**
  * Episoden-Suchformular (nur Episoden).
+ *
+ * Mit $basis bleibt die Suche auf der aufrufenden Seite: das Formular schickt
+ * `egp_q` an dieselbe Adresse zurück, und das Seiten-Template filtert damit
+ * seine eigene Abfrage. Ohne $basis geht es wie bisher in die allgemeine
+ * Trefferliste.
+ *
+ * @param string $basis Adresse, an die gesucht wird; leer = Startseite.
  */
-function egovpod_episode_search_form() {
-	$id = wp_unique_id( 'egp-episode-search-' );
+function egovpod_episode_search_form( $basis = '' ) {
+	$id     = wp_unique_id( 'egp-episode-search-' );
+	$eigen  = '' !== $basis;
+	$ziel   = $eigen ? $basis : home_url( '/' );
+	$feld   = $eigen ? 'egp_q' : 's';
+	$wert   = $eigen && function_exists( 'egovpod_search_term' ) ? egovpod_search_term() : get_search_query();
 	?>
-	<form role="search" method="get" class="egp-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	<form role="search" method="get" class="egp-search" action="<?php echo esc_url( $ziel ); ?>">
 		<div class="kern-form-input">
 			<label class="kern-label" for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Episoden durchsuchen', 'egovpod' ); ?></label>
 			<div class="egp-search__row">
-				<input class="kern-form-input__input" id="<?php echo esc_attr( $id ); ?>" type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php esc_attr_e( 'z. B. OZG, Registermodernisierung, EUDI-Wallet', 'egovpod' ); ?>">
-				<input type="hidden" name="post_type" value="podcast">
+				<input class="kern-form-input__input" id="<?php echo esc_attr( $id ); ?>" type="search" name="<?php echo esc_attr( $feld ); ?>" value="<?php echo esc_attr( $wert ); ?>" placeholder="<?php esc_attr_e( 'z. B. OZG, Registermodernisierung, EUDI-Wallet', 'egovpod' ); ?>">
+				<?php if ( ! $eigen ) : ?>
+					<input type="hidden" name="post_type" value="podcast">
+				<?php endif; ?>
 				<button type="submit" class="kern-btn kern-btn--primary">
 					<?php echo egovpod_icon( 'search' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					<span class="kern-label"><?php esc_html_e( 'Suchen', 'egovpod' ); ?></span>

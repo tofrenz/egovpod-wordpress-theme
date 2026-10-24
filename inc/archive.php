@@ -26,6 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function egovpod_query_vars( $vars ) {
 	$vars[] = 'egp_jahr';
+	$vars[] = 'egp_q';
 	return $vars;
 }
 add_filter( 'query_vars', 'egovpod_query_vars' );
@@ -44,6 +45,26 @@ function egovpod_current_year() {
 }
 
 /**
+ * Suchbegriff der Seiten-Templates, oder ''.
+ *
+ * Eigene Variable `egp_q` statt `s`: ein `s` in der Adresse einer Seite macht
+ * aus der Hauptabfrage eine Suche, und die Seite selbst passt dann nicht mehr
+ * auf den Begriff – sie läuft auf 404. `egp_q` landet nur in der eigenen
+ * Abfrage des Templates.
+ *
+ * @return string
+ */
+function egovpod_search_term() {
+	$begriff = (string) get_query_var( 'egp_q' );
+
+	if ( '' === $begriff && isset( $_GET['egp_q'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- nur eine Suche, keine Aktion.
+		$begriff = (string) wp_unslash( $_GET['egp_q'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	return trim( sanitize_text_field( $begriff ) );
+}
+
+/**
  * Episoden pro Seite.
  *
  * @return int
@@ -53,12 +74,13 @@ function egovpod_archive_per_page() {
 }
 
 /**
- * Abfrageeinstellungen für beide Archive.
+ * Abfrageeinstellungen für die Archive.
  *
- * @param int $paged Seitennummer.
+ * @param int  $paged           Seitennummer.
+ * @param bool $nur_transkript  Nur Folgen, zu denen ein Transkript vorliegt.
  * @return array<string, mixed>
  */
-function egovpod_archive_query_args( $paged = 1 ) {
+function egovpod_archive_query_args( $paged = 1, $nur_transkript = false ) {
 	$args = array(
 		'post_type'         => 'podcast',
 		'posts_per_page'    => egovpod_archive_per_page(),
@@ -66,13 +88,88 @@ function egovpod_archive_query_args( $paged = 1 ) {
 		'egovpod_by_number' => true,
 	);
 
+	if ( $nur_transkript ) {
+		$args['egovpod_only_transcript'] = true;
+	}
+
 	$jahr = egovpod_current_year();
 	if ( $jahr ) {
 		$args['year'] = $jahr;
 	}
 
+	$begriff = egovpod_search_term();
+	if ( '' !== $begriff ) {
+		$args['s'] = $begriff;
+	}
+
 	return $args;
 }
+
+/**
+ * Jahr und Suchbegriff an eine Adresse hängen.
+ *
+ * @param string $url Adresse.
+ * @return string
+ */
+function egovpod_keep_filters( $url ) {
+	$jahr = egovpod_current_year();
+	if ( $jahr ) {
+		$url = add_query_arg( 'egp_jahr', $jahr, $url );
+	}
+
+	$begriff = egovpod_search_term();
+	if ( '' !== $begriff ) {
+		$url = add_query_arg( 'egp_q', rawurlencode( $begriff ), $url );
+	}
+
+	return $url;
+}
+
+/**
+ * Bedingung „hat ein Transkript" als SQL, oder '' wenn das Modul fehlt.
+ *
+ * Eigenständige Unterabfrage – sie hängt nicht am Join der Nummernsortierung.
+ *
+ * @return string
+ */
+function egovpod_transcript_exists_sql() {
+	if ( ! function_exists( 'egovpod_transcript_table' ) ) {
+		return '';
+	}
+
+	$t_transkript = egovpod_transcript_table();
+	$t_folge      = egovpod_podlove_table( '\Podlove\Model\Episode' );
+
+	if ( ! $t_transkript || ! $t_folge ) {
+		return '';
+	}
+
+	global $wpdb;
+
+	return " AND EXISTS (
+		SELECT 1 FROM `{$t_folge}` AS egp_tf
+		INNER JOIN `{$t_transkript}` AS egp_tt ON egp_tt.episode_id = egp_tf.id
+		WHERE egp_tf.post_id = {$wpdb->posts}.ID
+	) ";
+}
+
+/**
+ * Abfrage auf Folgen mit Transkript einschränken.
+ *
+ * @param string   $where Bisherige Bedingung.
+ * @param WP_Query $query Abfrage.
+ * @return string
+ */
+function egovpod_only_transcript_where( $where, $query ) {
+	if ( ! $query instanceof WP_Query || ! $query->get( 'egovpod_only_transcript' ) ) {
+		return $where;
+	}
+
+	$bedingung = egovpod_transcript_exists_sql();
+
+	return $bedingung ? $where . $bedingung : $where;
+}
+add_filter( 'posts_where', 'egovpod_only_transcript_where', 10, 2 );
 
 /**
  * Hauptabfrage des Podlove-Archivs angleichen.
@@ -172,20 +269,25 @@ add_filter( 'posts_orderby', 'egovpod_number_orderby', 10, 2 );
 /**
  * Jahre mit Episoden, absteigend, mit Anzahl.
  *
+ * @param bool $nur_transkript Nur Folgen zählen, zu denen ein Transkript vorliegt.
  * @return array<int, int> Jahr => Anzahl.
  */
-function egovpod_episode_years() {
-	$zwischenspeicher = get_transient( 'egovpod_episode_years' );
+function egovpod_episode_years( $nur_transkript = false ) {
+	$schluessel = $nur_transkript ? 'egovpod_episode_years_ts' : 'egovpod_episode_years';
+
+	$zwischenspeicher = get_transient( $schluessel );
 	if ( is_array( $zwischenspeicher ) ) {
 		return $zwischenspeicher;
 	}
 
 	global $wpdb;
 
-	$zeilen = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	$bedingung = $nur_transkript ? egovpod_transcript_exists_sql() : '';
+
+	$zeilen = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL
 		"SELECT YEAR(post_date) AS jahr, COUNT(*) AS anzahl
 		 FROM {$wpdb->posts}
-		 WHERE post_type = 'podcast' AND post_status = 'publish'
+		 WHERE post_type = 'podcast' AND post_status = 'publish' {$bedingung}
 		 GROUP BY jahr
 		 ORDER BY jahr DESC"
 	);
@@ -195,18 +297,19 @@ function egovpod_episode_years() {
 		$jahre[ (int) $zeile->jahr ] = (int) $zeile->anzahl;
 	}
 
-	set_transient( 'egovpod_episode_years', $jahre, DAY_IN_SECONDS );
+	set_transient( $schluessel, $jahre, DAY_IN_SECONDS );
 	return $jahre;
 }
 
 /**
- * Jahresliste verwerfen, wenn sich eine Episode ändert.
+ * Jahreslisten verwerfen, wenn sich eine Episode ändert.
  *
  * @param int $post_id Beitrags-ID.
  */
 function egovpod_flush_episode_years( $post_id ) {
 	if ( 'podcast' === get_post_type( $post_id ) ) {
 		delete_transient( 'egovpod_episode_years' );
+		delete_transient( 'egovpod_episode_years_ts' );
 	}
 }
 add_action( 'save_post', 'egovpod_flush_episode_years' );
@@ -224,22 +327,27 @@ function egovpod_archive_base_url() {
 
 /**
  * Jahresleiste ausgeben.
+ *
+ * @param bool   $nur_transkript Nur Folgen mit Transkript zaehlen.
+ * @param string $basis          Grundadresse der Links; leer = Episodenarchiv.
  */
-function egovpod_year_nav() {
-	$jahre = egovpod_episode_years();
+function egovpod_year_nav( $nur_transkript = false, $basis = '' ) {
+	$jahre = egovpod_episode_years( $nur_transkript );
 	if ( count( $jahre ) < 2 ) {
 		return;
 	}
 
 	$aktuell = egovpod_current_year();
-	$basis   = egovpod_archive_base_url();
+	$basis   = $basis ? $basis : egovpod_archive_base_url();
 	$gesamt  = array_sum( $jahre );
+	$begriff = egovpod_search_term();
+	$alle    = '' !== $begriff ? add_query_arg( 'egp_q', rawurlencode( $begriff ), $basis ) : $basis;
 	?>
 	<nav class="egp-years" aria-label="<?php esc_attr_e( 'Nach Jahr filtern', 'egovpod' ); ?>">
 		<ul class="egp-years__list">
 			<li>
 				<a class="egp-years__link<?php echo $aktuell ? '' : ' egp-years__link--aktiv'; ?>"
-					href="<?php echo esc_url( $basis ); ?>"
+					href="<?php echo esc_url( $alle ); ?>"
 					<?php echo $aktuell ? '' : 'aria-current="true"'; ?>>
 					<?php esc_html_e( 'Alle', 'egovpod' ); ?>
 					<span class="egp-years__zahl"><?php echo esc_html( number_format_i18n( $gesamt ) ); ?></span>
@@ -248,7 +356,7 @@ function egovpod_year_nav() {
 			<?php foreach ( $jahre as $jahr => $anzahl ) : ?>
 				<li>
 					<a class="egp-years__link<?php echo ( $aktuell === $jahr ) ? ' egp-years__link--aktiv' : ''; ?>"
-						href="<?php echo esc_url( add_query_arg( 'egp_jahr', $jahr, $basis ) ); ?>"
+						href="<?php echo esc_url( add_query_arg( 'egp_jahr', $jahr, $alle ) ); ?>"
 						<?php echo ( $aktuell === $jahr ) ? 'aria-current="true"' : ''; ?>>
 						<?php echo esc_html( $jahr ); ?>
 						<span class="egp-years__zahl"><?php echo esc_html( number_format_i18n( $anzahl ) ); ?></span>
@@ -267,8 +375,7 @@ function egovpod_year_nav() {
  * @return string
  */
 function egovpod_year_in_pagination( $link ) {
-	$jahr = egovpod_current_year();
-	return $jahr ? add_query_arg( 'egp_jahr', $jahr, $link ) : $link;
+	return egovpod_keep_filters( $link );
 }
 
 /**
@@ -311,7 +418,7 @@ function egovpod_archive_toolbar( $query = null ) {
 
 	if ( $suche ) {
 		/* translators: 1: Anzahl, 2: Suchbegriff */
-		$text = sprintf( _n( '%1$s Folge zu „%2$s"', '%1$s Folgen zu „%2$s"', $anzahl, 'egovpod' ), number_format_i18n( $anzahl ), $suche );
+		$text = sprintf( _n( '%1$s Folge zu „%2$s“', '%1$s Folgen zu „%2$s“', $anzahl, 'egovpod' ), number_format_i18n( $anzahl ), $suche );
 	} elseif ( $jahr ) {
 		/* translators: 1: Anzahl, 2: Jahr */
 		$text = sprintf( _n( '%1$s Folge aus %2$s', '%1$s Folgen aus %2$s', $anzahl, 'egovpod' ), number_format_i18n( $anzahl ), $jahr );
@@ -394,7 +501,18 @@ function egovpod_is_episode_archive() {
 	if ( is_post_type_archive( 'podcast' ) ) {
 		return true;
 	}
-	return is_page() && 'page-templates/template-episodes.php' === get_page_template_slug();
+	if ( ! is_page() ) {
+		return false;
+	}
+
+	return in_array(
+		get_page_template_slug(),
+		array(
+			'page-templates/template-episodes.php',
+			'page-templates/template-transcripts.php',
+		),
+		true
+	);
 }
 
 /**

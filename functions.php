@@ -15,13 +15,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EGOVPOD_VERSION', '2.6.4' );
+define( 'EGOVPOD_VERSION', '2.6.5' );
 
 require_once get_stylesheet_directory() . '/inc/podlove.php';
 require_once get_stylesheet_directory() . '/inc/template-tags.php';
 require_once get_stylesheet_directory() . '/inc/customizer.php';
 require_once get_stylesheet_directory() . '/inc/contributors.php';
 require_once get_stylesheet_directory() . '/inc/archive.php';
+require_once get_stylesheet_directory() . '/inc/transcript.php';
 
 /**
  * Theme-Setup (ergänzend zum Eltern-Theme).

@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.6.4
+Version:           2.6.5
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -48,6 +48,19 @@ SPDX-License-Identifier: GPL-2.0-or-later OR EUPL-1.2
 
 .kux-header {
 	border-top: 6px solid var(--egp-brand);
+}
+
+/* Der Hell/Dunkel-Umschalter des Eltern-Themes tauscht beim Klick nur die
+   Beschriftung desselben Knopfes aus. „Helles Design" ist 111 px breit,
+   „Dunkles Design" 142 px — der Knopf wurde dadurch 192 px bzw. 198 px breit
+   und alles daneben sprang. Hier bekommt die Beschriftung selbst eine
+   Mindestbreite, die beide Zustände fasst: der Knopf behält seine Breite und
+   das Symbol bleibt stehen. In rem, damit es bei größerer Schrift mitwächst.
+   Gegen die Live-Seite gemessen: beide Zustände 208 px, Sprung 0 px. */
+.kux-theme-toggle__btn .kern-label {
+	display: inline-block;
+	min-width: 9.5rem;
+	text-align: left;
 }
 
 .egp-section > .kern-heading-medium,
@@ -1623,5 +1636,74 @@ html[data-kern-theme="dark"] .egp-person__services img {
 
 	.egp-archive-bar {
 		justify-content: flex-start;
+	}
+}
+
+/* ==========================================================================
+   Transkript-Downloads
+   Knopfreihe unter der Episode und auf den Karten der Seite „Transkripte".
+   Siehe inc/transcript.php.
+   ========================================================================== */
+
+/* Die Karte hat einen gestreckten Link über der ganzen Fläche; die Knöpfe
+   müssen darüber liegen, sonst sind sie nicht anklickbar. */
+.egp-ts-downloads {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--egp-space-s);
+	margin-top: var(--egp-space);
+}
+
+.egp-ts-downloads__titel {
+	font-size: var(--kern-typography-font-size-small-static, 0.9375rem);
+	color: var(--egp-muted);
+}
+
+.egp-ts-downloads__liste {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--egp-space-xs);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.egp-ts-downloads--karte {
+	margin-top: var(--egp-space-s);
+}
+
+.egp-ts-downloads--karte .egp-ts-downloads__titel {
+	width: 100%;
+}
+
+/* In der Listendarstellung ist für Gesichter und Knöpfe nebeneinander kein
+   Platz: Auf der Transkript-Seite gewinnen die Knöpfe. */
+.egp-grid--liste .egp-card--transkript .egp-crew {
+	display: none;
+}
+
+.egp-grid--liste .egp-card--transkript .egp-card__footer {
+	width: 30rem;
+}
+
+.egp-grid--liste .egp-card--transkript .egp-ts-downloads {
+	margin: 0;
+	flex-wrap: nowrap;
+}
+
+.egp-grid--liste .egp-card--transkript .egp-ts-downloads__titel {
+	display: none;
+}
+
+@media (max-width: 767.98px) {
+	.egp-grid--liste .egp-card--transkript .egp-card__footer {
+		width: 100%;
+	}
+
+	.egp-grid--liste .egp-card--transkript .egp-ts-downloads {
+		flex-wrap: wrap;
 	}
 }
