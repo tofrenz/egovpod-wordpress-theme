@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.6.7
+Version:           2.6.8
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -50,17 +50,147 @@ SPDX-License-Identifier: GPL-2.0-or-later OR EUPL-1.2
 	border-top: 6px solid var(--egp-brand);
 }
 
-/* Der Hell/Dunkel-Umschalter des Eltern-Themes tauscht beim Klick nur die
-   Beschriftung desselben Knopfes aus. „Helles Design" ist 111 px breit,
-   „Dunkles Design" 142 px — der Knopf wurde dadurch 192 px bzw. 198 px breit
-   und alles daneben sprang. Hier bekommt die Beschriftung selbst eine
-   Mindestbreite, die beide Zustände fasst: der Knopf behält seine Breite und
-   das Symbol bleibt stehen. In rem, damit es bei größerer Schrift mitwächst.
-   Gegen die Live-Seite gemessen: beide Zustände 208 px, Sprung 0 px. */
-.kux-theme-toggle__btn .kern-label {
-	display: inline-block;
-	min-width: 9.5rem;
-	text-align: left;
+/* Hell/Dunkel-Umschalter.
+
+   Das Eltern-Theme liefert einen Knopf mit Symbol und Beschriftung, der beim
+   Umschalten die Beschriftung tauscht — und damit seine Breite änderte, was
+   alles daneben springen ließ (2.6.5 hatte das mit einer Mindestbreite
+   abgefangen).
+
+   Daraus wird hier ein Schalter: Sonne links, Mond rechts, ein Knöpfchen in
+   der Markenfarbe markiert das laufende Design. Feste Breite, also kein
+   Springen mehr. Es bleibt derselbe Knopf des Eltern-Themes — kein eigenes
+   JavaScript, kein überschriebenes header.php, und ein Update des
+   Eltern-Themes bringt nur die Gestaltung hier zurück, nie die Funktion in
+   Gefahr. Die Beschriftung bleibt für Screenreader erhalten, nur unsichtbar.
+
+   Die Symbole sind Material Symbols (light_mode, dark_mode), dieselben, die
+   das Eltern-Theme nutzt — als Maske, damit sie die Farbe aus der Umgebung
+   nehmen. */
+:root {
+	/* Das Knöpfchen trägt das aktive Symbol, deshalb je Design eine eigene
+	   Farbe: Markenorange ist auf Weiß zu hell (2,2:1). Gemessen ergibt
+	   #a64f00 mit Weiß 5,6:1 und #ff9400 mit #16181d 8,0:1. */
+	--egp-schalter-knopf: #a64f00;
+	--egp-schalter-aktiv: #fff;
+}
+
+:root[data-kern-theme="dark"] {
+	--egp-schalter-knopf: #ff9400;
+	--egp-schalter-aktiv: #16181d;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-kern-theme="light"]) {
+		--egp-schalter-knopf: #ff9400;
+		--egp-schalter-aktiv: #16181d;
+	}
+}
+
+.kux-theme-toggle .kux-theme-toggle__btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 5.25rem;
+	min-width: 0;
+	padding: 0;
+	gap: 0;
+	border: 1px solid var(--egp-border);
+	border-radius: 999px;
+	background: transparent;
+}
+
+/* Beschriftung des Eltern-Themes: unsichtbar, aber vorlesbar. Sie ist der
+   zugängliche Name des Knopfes. */
+.kux-theme-toggle .kux-theme-toggle__btn .kern-label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Das Knöpfchen hinter dem aktiven Symbol. */
+.kux-theme-toggle .kux-theme-toggle__btn::before {
+	content: "";
+	position: absolute;
+	top: 0.25rem;
+	left: 0.25rem;
+	width: calc(50% - 0.25rem);
+	height: calc(100% - 0.5rem);
+	border-radius: 999px;
+	background: var(--egp-schalter-knopf);
+	transition: transform 0.18s ease;
+}
+
+/* Sonne ist das Symbol des Eltern-Themes (dessen Klasse wechselt, die Maske
+   hier nicht), Mond das Pseudoelement. */
+.kux-theme-toggle .kux-theme-toggle__btn .kern-icon,
+.kux-theme-toggle .kux-theme-toggle__btn::after {
+	position: relative;
+	display: block;
+	width: 50%;
+	height: 1.25rem;
+	background-color: var(--egp-muted);
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: 1.25rem 1.25rem;
+	mask-size: 1.25rem 1.25rem;
+	transition: background-color 0.18s ease;
+}
+
+.kux-theme-toggle .kux-theme-toggle__btn .kern-icon {
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720V-200h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 96-57 60Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-96 101-60-57Z'/%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720V-200h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 96-57 60Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-96 101-60-57Z'/%3E%3C/svg%3E");
+	background-color: var(--egp-schalter-aktiv);
+}
+
+.kux-theme-toggle .kux-theme-toggle__btn::after {
+	content: "";
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-151 0-255.5-104.5T120-480q0-138 90-239.5T440-838q13-2 23 3.5t16 14.5q6 11 6.5 23t-5.5 24q-15 26-22.5 55t-7.5 60q0 100 70 170t170 70q31 0 61-7.5t54-21.5q11-6 23-6.5t23 5.5q11 5 16.5 15.5T862-392q-16 118-115.5 195T480-120Z'/%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-151 0-255.5-104.5T120-480q0-138 90-239.5T440-838q13-2 23 3.5t16 14.5q6 11 6.5 23t-5.5 24q-15 26-22.5 55t-7.5 60q0 100 70 170t170 70q31 0 61-7.5t54-21.5q11-6 23-6.5t23 5.5q11 5 16.5 15.5T862-392q-16 118-115.5 195T480-120Z'/%3E%3C/svg%3E");
+}
+
+:root[data-kern-theme="dark"] .kux-theme-toggle .kux-theme-toggle__btn::before {
+	transform: translateX(100%);
+}
+
+:root[data-kern-theme="dark"] .kux-theme-toggle .kux-theme-toggle__btn .kern-icon {
+	background-color: var(--egp-muted);
+}
+
+:root[data-kern-theme="dark"] .kux-theme-toggle .kux-theme-toggle__btn::after {
+	background-color: var(--egp-schalter-aktiv);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-kern-theme="light"]) .kux-theme-toggle .kux-theme-toggle__btn::before {
+		transform: translateX(100%);
+	}
+
+	:root:not([data-kern-theme="light"]) .kux-theme-toggle .kux-theme-toggle__btn .kern-icon {
+		background-color: var(--egp-muted);
+	}
+
+	:root:not([data-kern-theme="light"]) .kux-theme-toggle .kux-theme-toggle__btn::after {
+		background-color: var(--egp-schalter-aktiv);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.kux-theme-toggle .kux-theme-toggle__btn::before,
+	.kux-theme-toggle .kux-theme-toggle__btn .kern-icon,
+	.kux-theme-toggle .kux-theme-toggle__btn::after {
+		transition: none;
+	}
 }
 
 .egp-section > .kern-heading-medium,

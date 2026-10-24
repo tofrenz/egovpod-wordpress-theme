@@ -99,6 +99,20 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.8 =
+* Der Hell/Dunkel-Umschalter oben rechts ist jetzt ein Schalter mit Sonne und
+  Mond: Sonne links, Mond rechts, ein Knöpfchen in der Markenfarbe markiert
+  das laufende Design. Vorher stand dort „Helles Design" bzw. „Dunkles
+  Design" als Text.
+* Dadurch entfällt die Mindestbreite aus 2.6.5 — der Schalter hat eine feste
+  Breite, es kann nichts mehr springen.
+* Es bleibt derselbe Knopf des Eltern-Themes, nur anders gestaltet: kein
+  eigenes JavaScript, kein überschriebenes header.php. Die Beschriftung bleibt
+  für Screenreader erhalten, nur unsichtbar.
+* Farben gemessen statt geschätzt: das Knöpfchen ist im hellen Design
+  #a64f00 (Symbol weiß, 5,6:1), im dunklen #ff9400 (Symbol #16181d, 8,0:1).
+  Markenorange auf Weiß käme nur auf 2,2:1.
+
 = 2.6.7 =
 * Kommentare stehen jetzt zugeklappt über dem Transkript statt ganz unten
   hinter den verwandten Episoden. Dort begannen sie auf einer Episodenseite

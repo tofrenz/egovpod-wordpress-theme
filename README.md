@@ -86,9 +86,15 @@ Fall, deshalb sind die ersten beiden ab Werk aus.
 | Neueste Blogbeiträge auf der Startseite | an |
 | Episoden pro Archivseite | 24 |
 
-Farben, Breiten und der Hell/Dunkel-Umschalter gehören dem Eltern-Theme und stehen
-im Customizer unter **KERN-UX**. Das Child-Theme setzt dort lediglich die Akzentfarbe
-vor (hell `#A64F00`, dunkel `#FF9400`) — überschreibbar wie jede andere Einstellung.
+Farben und Breiten gehören dem Eltern-Theme und stehen im Customizer unter
+**KERN-UX**. Das Child-Theme setzt dort lediglich die Akzentfarbe vor
+(hell `#A64F00`, dunkel `#FF9400`) — überschreibbar wie jede andere Einstellung.
+
+Den Hell/Dunkel-Umschalter oben rechts stellt ebenfalls das Eltern-Theme; das
+Child-Theme gestaltet ihn nur um — aus Symbol plus Beschriftung wird ein Schalter
+mit Sonne und Mond. Reine CSS-Sache: derselbe Knopf, dieselbe Funktion, kein
+eigenes JavaScript. Ein Update des Eltern-Themes kann also höchstens die
+Gestaltung zurückholen, nie die Funktion brechen.
 
 ### Filter
 
