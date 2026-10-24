@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:a3f685b2-4627-4197-97d8-8f110b2f8f90",
+  "serialNumber": "urn:uuid:d6e503bd-bfbc-4aba-b552-5a597d216ba0",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-24T15:16:55Z",
+    "timestamp": "2026-10-24T15:21:44Z",
     "authors": [
       {
         "name": "Torsten Frenzel"
@@ -14,7 +14,7 @@
       "bom-ref": "egovpod",
       "type": "application",
       "name": "eGovPod",
-      "version": "2.6.9",
+      "version": "2.6.10",
       "description": "WordPress-Child-Theme von KERN-UX fuer den eGovernment Podcast mit dem Podlove Podcast Publisher.",
       "supplier": {
         "name": "Torsten Frenzel",
@@ -33,7 +33,7 @@
           "expression": "GPL-2.0-or-later OR EUPL-1.2"
         }
       ],
-      "purl": "pkg:generic/egovpod@2.6.9",
+      "purl": "pkg:generic/egovpod@2.6.10",
       "externalReferences": [
         {
           "type": "website",
@@ -51,7 +51,7 @@
       "properties": [
         {
           "name": "egovpod:commit",
-          "value": "90878b4c01d9124c181a5d8d9dfd0e0aa57ff000"
+          "value": "7dca73d108a4122038a350f8a91f3ebb9831b695"
         },
         {
           "name": "egovpod:wordpress-mindestens",
@@ -496,21 +496,21 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "c552d3418455cd3620ea50bc7d2ef7581920f8d8"
+          "content": "f301941995c35c22376121401ab89e40991a9bd1"
         },
         {
           "alg": "SHA-256",
-          "content": "a43fec3a9583c984b836dea940ec1de3a4bd637fc5d0c727cb39791c071033b1"
+          "content": "842d1b56afa378834278413e6c235b613d965fe7fa124198d3ad9add94ce9cdf"
         },
         {
           "alg": "SHA-512",
-          "content": "156bc4ed3996505b0ab9c6cbeb1b2afbc3ef9ba099e91673e8990db96bdc8b446bdede0a5d4dd77572ae2dac6703d788220c33c1a35103d4652838243ac6fd8f"
+          "content": "299842ef7b5ba774cab24c52cc4e33a7235987e2ba72dc25cd8e50a618f5c9b73a8de02090fce0380f05a47463c5517ecdee3661a86a957d148bbfd0b333ec7a"
         }
       ],
       "properties": [
         {
           "name": "egovpod:bytes",
-          "value": "8226"
+          "value": "8227"
         }
       ]
     },
@@ -826,21 +826,21 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "74237ddc38ec56dca37561d88b3f5353b1d1c1d2"
+          "content": "85d1b65c96354eeaadb4ddb267301ddfc9dcc8d0"
         },
         {
           "alg": "SHA-256",
-          "content": "fd76620d908ca7abe0b8093b73b10495c0bb2b7376a1feafbc054cefb882ea47"
+          "content": "5de5b2b7ee22a475792ba5acbc1d5baa3de3ee455d6cb1dde1d08fbcc23e496a"
         },
         {
           "alg": "SHA-512",
-          "content": "e6ac40aaeae8325a1c1c7b5a5d050b7d3519bc71a9c51855150bbb1d550435542eaee25f6c2f3a2e2397c533e76dcfff8889275f976fb915fa4d0b749937c365"
+          "content": "56e1cdb301ff163f0850fa71511039717c915e39ebdaf2fbf13a717c55dc81ae0e8ca68afb8d51d878dd82f2a6db79db1851a2fb1c2b20d332ccea9611e1a121"
         }
       ],
       "properties": [
         {
           "name": "egovpod:bytes",
-          "value": "16572"
+          "value": "16874"
         }
       ]
     },
@@ -921,21 +921,21 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "e485011254dbf332091d6322340b65d3a153db81"
+          "content": "a74982dccb3cf59b06d0d903f23d85ad5756f3e1"
         },
         {
           "alg": "SHA-256",
-          "content": "81b5a724b9a406b9d5fa14388930dd432dcd8ef7b2eefa3eee9654327b7e598c"
+          "content": "7f2bd65e9885779732a0ca0d387853ef90a82824f5cc456886edf327a54783a1"
         },
         {
           "alg": "SHA-512",
-          "content": "bd3e0390279048885a2cf3b93a00d2a0bcedc7ccd46882182ec0c2864651818e8d251c0fff7c09f039c6053ce7a49040f0bff65ccab69505c71113f56bb15fd9"
+          "content": "9e3c6c9e63389b59d44badad95fcd2053cff17f8245711d41f22a9c83d34ebd401f4168a5ffe18c29db4f647bc44f9df354931b6d4469a7281e1e52456fc9741"
         }
       ],
       "properties": [
         {
           "name": "egovpod:bytes",
-          "value": "51258"
+          "value": "51595"
         }
       ]
     },
