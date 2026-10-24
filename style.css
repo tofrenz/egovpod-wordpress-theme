@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.6.8
+Version:           2.6.9
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -1820,8 +1820,47 @@ html[data-kern-theme="dark"] .egp-person__services img {
 
 .egp-ts-downloads--karte .egp-ts-downloads__btn {
 	width: 100%;
+	/* .kern-btn setzt min-width: fit-content. Ohne diese Zeile kann der Knopf
+	   nicht schmaler werden als seine Beschriftung und läuft aus seinem
+	   Listenelement heraus — die Knöpfe überdecken sich dann gegenseitig. */
+	min-width: 0;
 	justify-content: center;
 	padding-inline: var(--egp-space-xs);
+}
+
+/* Kartenansicht der Transkript-Seite: nur Cover und Download-Knöpfe.
+
+   Die Cover tragen Nummer und Titel bereits als Bild, deshalb reicht das als
+   Übersicht. In der Listendarstellung bleibt alles stehen — dort ist Platz.
+
+   Der Link auf die Folge liegt bei diesen Karten über der ganzen Karte (siehe
+   template-parts/episode-card.php), nicht in der ausgeblendeten Überschrift.
+   Sonst wäre die Folge von hier aus nicht mehr erreichbar. */
+.egp-card__ganz {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+}
+
+.egp-grid--transkripte:not(.egp-grid--liste) .egp-card--transkript .kern-card__header,
+.egp-grid--transkripte:not(.egp-grid--liste) .egp-card--transkript .kern-card__body,
+.egp-grid--transkripte:not(.egp-grid--liste) .egp-card--transkript .egp-meta,
+.egp-grid--transkripte:not(.egp-grid--liste) .egp-card--transkript .egp-crew,
+.egp-grid--transkripte:not(.egp-grid--liste) .egp-card--transkript .egp-ts-downloads__titel {
+	display: none;
+}
+
+.egp-grid--transkripte:not(.egp-grid--liste) .egp-card--transkript .egp-card__footer {
+	width: 100%;
+}
+
+.egp-grid--transkripte:not(.egp-grid--liste) .egp-card--transkript .egp-ts-downloads {
+	flex: 1 1 100%;
+	margin-top: 0;
+}
+
+.egp-grid--transkripte:not(.egp-grid--liste) .egp-card--transkript .egp-ts-downloads__liste {
+	width: 100%;
 }
 
 /* ==========================================================================
@@ -1867,6 +1906,21 @@ html[data-kern-theme="dark"] .egp-person__services img {
 
 .egp-grid--liste .egp-card--transkript .egp-ts-downloads__titel {
 	display: none;
+}
+
+/* In der Zeile bestimmen die Beschriftungen die Breite. Der Block darf nicht
+   mitschrumpfen, sonst wird es für drei Knöpfe zu eng (196 gegenüber 176 px
+   gemessen); stattdessen gibt der Titel daneben nach. */
+.egp-grid--liste .egp-card--transkript .egp-ts-downloads {
+	flex: 0 0 auto;
+}
+
+.egp-grid--liste .egp-card--transkript .egp-ts-downloads__liste > li {
+	flex: 0 0 auto;
+}
+
+.egp-grid--liste .egp-card--transkript .egp-ts-downloads__btn {
+	width: auto;
 }
 
 @media (max-width: 767.98px) {

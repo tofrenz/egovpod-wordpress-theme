@@ -12,6 +12,29 @@ $egp_heading    = isset( $args['heading'] ) ? $args['heading'] : 'h3';
 $egp_transkript = ! empty( $args['transkript'] );
 ?>
 <article <?php post_class( 'kern-card kern-card--interactive egp-card' . ( $egp_transkript ? ' egp-card--transkript' : '' ) ); ?>>
+	<?php
+	/*
+	 * Transkript-Karten: der Link auf die Folge liegt über der ganzen Karte,
+	 * nicht in der Überschrift. In der Kartenansicht zeigt die Karte nur Cover
+	 * und Download-Knöpfe, die Überschrift ist ausgeblendet — steckte der Link
+	 * darin, wäre die Folge von dort aus nicht mehr erreichbar. Die Beschriftung
+	 * für Screenreader steht im Link selbst.
+	 */
+	?>
+	<?php if ( $egp_transkript ) : ?>
+		<a class="kern-link kern-link--stretched egp-card__ganz" href="<?php the_permalink(); ?>">
+			<span class="egp-sr-only">
+				<?php
+				if ( $egp_number ) {
+					/* translators: 1: Episodennummer, 2: Titel der Folge */
+					echo esc_html( sprintf( __( 'Folge %1$s: %2$s', 'egovpod' ), $egp_number, get_the_title() ) );
+				} else {
+					the_title();
+				}
+				?>
+			</span>
+		</a>
+	<?php endif; ?>
 	<?php if ( $egp_cover ) : ?>
 		<div class="kern-card__media">
 			<img src="<?php echo esc_url( $egp_cover ); ?>" alt="" loading="lazy" decoding="async" width="480" height="480">
@@ -28,7 +51,11 @@ $egp_transkript = ! empty( $args['transkript'] );
 				</p>
 			<?php endif; ?>
 			<<?php echo tag_escape( $egp_heading ); ?> class="kern-title">
-				<a class="kern-link kern-link--stretched" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+				<?php if ( $egp_transkript ) : ?>
+					<?php the_title(); ?>
+				<?php else : ?>
+					<a class="kern-link kern-link--stretched" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+				<?php endif; ?>
 			</<?php echo tag_escape( $egp_heading ); ?>>
 			<?php if ( $egp_subtitle ) : ?>
 				<p class="kern-subline"><?php echo esc_html( $egp_subtitle ); ?></p>

@@ -99,6 +99,21 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.9 =
+* Die drei Download-Knöpfe überdeckten sich in der Listendarstellung. Ursache:
+  `.kern-btn` setzt `min-width: fit-content`, der Knopf konnte also nicht
+  schmaler werden als seine Beschriftung — der Block darum herum wurde aber
+  von 196 auf 176 Pixel zusammengedrückt, und die Knöpfe liefen aus ihren
+  Listenelementen heraus. Der Block schrumpft jetzt nicht mehr mit, und der
+  Knopf darf es.
+* Kartenansicht der Transkript-Seite: Sie zeigt jetzt nur noch Cover und
+  Download-Knöpfe. Nummer und Titel stehen ohnehin auf den Covern. In der
+  Listendarstellung bleibt alles stehen.
+* Dafür liegt der Link auf die Folge bei Transkript-Karten über der ganzen
+  Karte statt in der Überschrift — sonst wäre die Folge aus der Kartenansicht
+  nicht mehr erreichbar, weil die Überschrift dort ausgeblendet ist. Für
+  Screenreader trägt der Link „Folge 281: Titel".
+
 = 2.6.8 =
 * Der Hell/Dunkel-Umschalter oben rechts ist jetzt ein Schalter mit Sonne und
   Mond: Sonne links, Mond rechts, ein Knöpfchen in der Markenfarbe markiert
