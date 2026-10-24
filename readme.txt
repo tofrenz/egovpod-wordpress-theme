@@ -99,6 +99,15 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.7 =
+* Kommentare stehen jetzt zugeklappt über dem Transkript statt ganz unten
+  hinter den verwandten Episoden. Dort begannen sie auf einer Episodenseite
+  erst bei rund 4700 Pixeln und waren praktisch unsichtbar. Auf dem Aufklapper
+  steht die Anzahl, bei noch keinem Kommentar „Kommentar schreiben".
+* Ein kleines Skript klappt den Bereich auf, wenn die Adresse hineinzeigt —
+  nötig nach dem Absenden eines Kommentars (WordPress springt auf
+  #comment-123) und für Links aus Benachrichtigungen.
+
 = 2.6.6 =
 * Die drei Download-Knöpfe brachen in der Kartenansicht auf zwei Zeilen um —
   „PDF" rutschte allein in die zweite. Sie teilen sich jetzt die Kartenbreite

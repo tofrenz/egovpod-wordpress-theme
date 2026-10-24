@@ -111,6 +111,19 @@ while ( have_posts() ) :
 							</section>
 						<?php endif; ?>
 
+						<?php endif; ?>
+
+						<?php
+						/*
+						 * Kommentare: zugeklappt und oberhalb des Transkripts. Vorher
+						 * standen sie ganz unten hinter den verwandten Episoden und
+						 * waren praktisch unsichtbar.
+						 */
+						?>
+						<?php egovpod_comments_accordion(); ?>
+
+						<?php if ( $egp_parts ) : ?>
+
 						<?php if ( get_theme_mod( 'egovpod_show_transcript', true ) ) : ?>
 							<?php $egp_transcript = egovpod_transcript(); ?>
 							<?php if ( $egp_transcript && wp_strip_all_tags( $egp_transcript ) ) : ?>
@@ -216,11 +229,6 @@ while ( have_posts() ) :
 				<?php endif; ?>
 			<?php endif; ?>
 
-			<?php
-			if ( comments_open() || get_comments_number() ) {
-				comments_template();
-			}
-			?>
 		</div>
 	</article>
 

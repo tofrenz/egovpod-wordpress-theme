@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.6.6
+Version:           2.6.7
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -1692,6 +1692,32 @@ html[data-kern-theme="dark"] .egp-person__services img {
 	width: 100%;
 	justify-content: center;
 	padding-inline: var(--egp-space-xs);
+}
+
+/* ==========================================================================
+   Kommentare
+   ========================================================================== */
+
+/* Der Bereich stand bisher ganz unten hinter den verwandten Episoden — bei
+   einer Episodenseite rund 4700 Pixel weit unten und damit praktisch
+   unsichtbar. Jetzt steht er zugeklappt über dem Transkript. */
+.egp-comments {
+	margin-top: var(--egp-space-l);
+}
+
+.egp-comments__body {
+	padding-top: var(--egp-space-s);
+}
+
+/* Die Überschrift des Eltern-Themes („3 Kommentare zu …") wiederholt nur,
+   was schon auf dem Aufklapper steht. */
+.egp-comments__body .kux-comments__title {
+	display: none;
+}
+
+.egp-comments__body .kux-comments,
+.egp-comments__body .comments-area {
+	margin-top: 0;
 }
 
 /* In der Listendarstellung ist für Gesichter und Knöpfe nebeneinander kein

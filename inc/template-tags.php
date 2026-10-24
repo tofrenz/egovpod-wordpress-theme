@@ -188,3 +188,77 @@ function egovpod_episode_banner( $post = null, $class = 'egp-episode__banner' ) 
 		)
 	);
 }
+
+/**
+ * Kommentare als Akkordeon.
+ *
+ * Steht auf der Episodenseite über dem Transkript statt ganz unten. Zugeklappt,
+ * mit der Anzahl in der Beschriftung — dadurch ist sichtbar, dass es den
+ * Bereich gibt, ohne dass die Liste die Seite verlängert.
+ *
+ * Die Ausgabe selbst kommt unverändert aus comments_template() des
+ * Eltern-Themes; hier kommt nur die Hülle dazu.
+ */
+function egovpod_comments_accordion() {
+	if ( ! comments_open() && ! get_comments_number() ) {
+		return;
+	}
+
+	$egp_anzahl = (int) get_comments_number();
+
+	if ( $egp_anzahl ) {
+		$egp_titel = sprintf(
+			/* translators: %s: Anzahl der Kommentare */
+			_n( '%s Kommentar', '%s Kommentare', $egp_anzahl, 'egovpod' ),
+			number_format_i18n( $egp_anzahl )
+		);
+	} else {
+		$egp_titel = __( 'Kommentar schreiben', 'egovpod' );
+	}
+	?>
+	<section class="egp-section egp-comments">
+		<details class="kern-accordion egp-comments__accordion" id="egp-kommentare">
+			<summary class="kern-accordion__header">
+				<span class="kern-title"><?php echo esc_html( $egp_titel ); ?></span>
+			</summary>
+			<div class="kern-accordion__body egp-comments__body">
+				<?php comments_template(); ?>
+			</div>
+		</details>
+	</section>
+	<?php
+}
+
+/**
+ * Akkordeon aufklappen, wenn die Adresse hineinzeigt.
+ *
+ * Nötig nach dem Absenden eines Kommentars (WordPress springt auf
+ * #comment-123) und für Links aus Benachrichtigungen. Ohne das Skript landet
+ * man auf der Seite, und der Kommentar steckt im zugeklappten Bereich.
+ */
+function egovpod_comments_accordion_script() {
+	if ( ! is_singular( 'podcast' ) ) {
+		return;
+	}
+	?>
+	<script>
+	(function () {
+		var akkordeon = document.getElementById('egp-kommentare');
+		if (!akkordeon) { return; }
+
+		function aufklappen() {
+			var marke = window.location.hash.slice(1);
+			if (!marke) { return; }
+			var ziel = document.getElementById(marke);
+			if (!ziel || !akkordeon.contains(ziel)) { return; }
+			akkordeon.open = true;
+			ziel.scrollIntoView();
+		}
+
+		aufklappen();
+		window.addEventListener('hashchange', aufklappen);
+	}());
+	</script>
+	<?php
+}
+add_action( 'wp_footer', 'egovpod_comments_accordion_script' );
