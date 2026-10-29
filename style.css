@@ -5,7 +5,7 @@ Template:          kern-ux
 Author:            Torsten Frenzel
 Author URI:        https://www.linkedin.com/in/tfrenzel
 Description:       Child-Theme von KERN-UX (Samtgemeinde Emlichheim) für den eGovernment Podcast mit dem Podlove Podcast Publisher. Ergänzt Episodenseite (Web Player, Shownotes, Mitwirkende, Transkript, Downloads, Abo-Button), Episodenarchiv mit Suche, Podcast-Startseite, das eGovPod-Logo und die Markenfarbe Orange. KERN-Kit, Kopf, Fuß, Navigation und Hell/Dunkel kommen aus dem Eltern-Theme und werden mit dessen Updates aktuell gehalten.
-Version:           2.6.10
+Version:           2.6.11
 Requires at least: 6.4
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -1940,5 +1940,47 @@ html[data-kern-theme="dark"] .egp-person__services img {
 
 	.egp-grid--liste .egp-card--transkript .egp-ts-downloads {
 		flex-wrap: wrap;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * 404 – Seite nicht gefunden
+ * ------------------------------------------------------------------------ */
+
+.egp-404__head .egp-404__text {
+	max-width: 46rem;
+}
+
+.egp-404__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 1.5rem;
+}
+
+.egp-404__abo-inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+}
+
+.egp-404__abo-inner > div:first-child {
+	flex: 1 1 22rem;
+}
+
+.egp-404__abo-inner p {
+	margin-bottom: 0;
+}
+
+.egp-404__abo-btn {
+	flex: 0 0 auto;
+}
+
+@media (max-width: 40rem) {
+	.egp-404__abo-btn,
+	.egp-404__abo-btn .kern-btn {
+		width: 100%;
 	}
 }

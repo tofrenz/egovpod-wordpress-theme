@@ -99,6 +99,14 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.11 =
+* Eigene 404-Seite (`404.php`). Bisher erbte das Child die des Eltern-Themes.
+  Statt einer Sackgasse gibt es jetzt: Suche über die Episoden (geht an die
+  Seite mit dem Template „Episodenarchiv", weil nur dort `egp_q` ausgewertet
+  wird), Knöpfe zu Startseite, Episodenarchiv und Teilnehmer:innen, die drei
+  neuesten Folgen als Karten und einen Abo-Block. Fehlt eines davon — kein
+  Podlove, keine Archivseite —, fällt der jeweilige Teil still weg.
+
 = 2.6.10 =
 * Nachtrag zu 2.6.9: In der Listendarstellung brachen die Titel der
   Transkript-Folgen über mehrere Zeilen um, statt mit „…" abgeschnitten zu
