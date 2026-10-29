@@ -99,6 +99,11 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.13 =
+* Nachtrag zu 2.6.12: Der Knopf zu den Teilnehmer:innen fehlte weiterhin.
+  `get_pages()` findet die Seite auf dieser Installation nicht — vermutlich,
+  weil sie eine Unterseite ist. Die 404-Seite sucht sie jetzt über `WP_Query`.
+
 = 2.6.12 =
 * Nachtrag zu 2.6.11: Der Knopf zu den Teilnehmer:innen fehlte auf der
   404-Seite. `egovpod_contributors_page_url()` lieferte dort nichts zurück;

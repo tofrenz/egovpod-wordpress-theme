@@ -52,15 +52,23 @@ $egp_such_basis = $egp_archiv_seiten ? get_permalink( $egp_archiv_seiten[0] ) : 
 			</a>
 		<?php endif; ?>
 		<?php
-		// Gleiche Suche wie oben: über das Seiten-Template, nicht über den Slug.
-		$egp_leute_seiten = get_pages(
+		/*
+		 * Seite mit dem Teilnehmer-Template suchen. Über WP_Query statt
+		 * get_pages(): Letzteres findet die Seite auf dieser Installation
+		 * nicht, vermutlich weil sie eine Unterseite ist.
+		 */
+		$egp_leute_q = new WP_Query(
 			array(
-				'meta_key'   => '_wp_page_template', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-				'meta_value' => 'page-templates/template-contributors.php', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-				'number'     => 1,
+				'post_type'      => 'page',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'no_found_rows'  => true,
+				'meta_key'       => '_wp_page_template', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value'     => 'page-templates/template-contributors.php', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 			)
 		);
-		$egp_leute = $egp_leute_seiten ? get_permalink( $egp_leute_seiten[0] ) : '';
+		$egp_leute = $egp_leute_q->posts ? get_permalink( $egp_leute_q->posts[0] ) : '';
 		?>
 		<?php if ( $egp_leute ) : ?>
 			<a class="kern-btn kern-btn--secondary" href="<?php echo esc_url( $egp_leute ); ?>">
