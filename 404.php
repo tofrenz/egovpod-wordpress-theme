@@ -52,7 +52,15 @@ $egp_such_basis = $egp_archiv_seiten ? get_permalink( $egp_archiv_seiten[0] ) : 
 			</a>
 		<?php endif; ?>
 		<?php
-		$egp_leute = function_exists( 'egovpod_contributors_page_url' ) ? egovpod_contributors_page_url() : '';
+		// Gleiche Suche wie oben: über das Seiten-Template, nicht über den Slug.
+		$egp_leute_seiten = get_pages(
+			array(
+				'meta_key'   => '_wp_page_template', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_value' => 'page-templates/template-contributors.php', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+				'number'     => 1,
+			)
+		);
+		$egp_leute = $egp_leute_seiten ? get_permalink( $egp_leute_seiten[0] ) : '';
 		?>
 		<?php if ( $egp_leute ) : ?>
 			<a class="kern-btn kern-btn--secondary" href="<?php echo esc_url( $egp_leute ); ?>">

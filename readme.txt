@@ -99,6 +99,16 @@ sind Stellen des Bundes, der Länder und der Kommunen vorbehalten.
 
 == Changelog ==
 
+= 2.6.12 =
+* Nachtrag zu 2.6.11: Der Knopf zu den Teilnehmer:innen fehlte auf der
+  404-Seite. `egovpod_contributors_page_url()` lieferte dort nichts zurück;
+  die Seite sucht die Zielseite jetzt selbst über das Seiten-Template, so wie
+  sie es für das Episodenarchiv ohnehin schon tut.
+* Suchfeld auf volle Breite. `.kern-form-input` aus dem Eltern-Theme ist eine
+  Flex-Spalte, deshalb war die Zeile mit Feld und Knopf nur so breit wie ihr
+  Inhalt — 355 statt 640 Pixel. Betrifft auch das Episodenarchiv und die
+  Transkript-Seite.
+
 = 2.6.11 =
 * Eigene 404-Seite (`404.php`). Bisher erbte das Child die des Eltern-Themes.
   Statt einer Sackgasse gibt es jetzt: Suche über die Episoden (geht an die
